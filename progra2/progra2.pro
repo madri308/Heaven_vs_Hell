@@ -23,13 +23,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+-DJSON_MultipleHeaders=ON
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    jsonparser.cpp \
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    jsonparser.h \
+    json.hpp
 
 FORMS += \
         mainwindow.ui
@@ -38,3 +42,22 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+# Sets the default installation prefix to the build directory.
+# This is the same default that Qt's configuration process uses.
+!defined(PREFIX,var): PREFIX = $$OUT_PWD
+
+MY_RESOURCES = \
+  data.json \
+
+OTHER_SOURCES += $$MY_RESOURCES
+
+# Object describing the resources to install
+my_resources.path = $$PREFIX/share/myproject
+my_resources.files = $$MY_RESOURCES
+
+# The automatically generated object describing the target.
+target.path = $$PREFIX/bin/myproject
+
+# Declare my_resources and target objects to be installed.
+INSTALLS += my_resources target
+
