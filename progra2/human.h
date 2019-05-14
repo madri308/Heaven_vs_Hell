@@ -15,10 +15,10 @@ struct Human
     string email;
     string job;
     QString birth;
-    string sins[];
-    string goodDeeds[];
+    string sins[3][7];
+    string goodDeeds[3][7];
 
-    Human(int i, string n, string s, string c, string r, string e, string j);
+    Human(int id, string name, string surname, string country, string rreligion, string email, string job,string sins[3][7],string goodDeeds[3][7]);
 };
 
 #endif // HUMAN_H

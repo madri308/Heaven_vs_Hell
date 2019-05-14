@@ -3,7 +3,6 @@
 #include "string.h"
 #include "jsonparser.h"
 
-
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -13,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     string names[1000];
     string lastnames[1000];
-    string religions[50];
+    string religions[10];
     string countries[100];
     string jobs[50];
     jsonParser *m = new jsonParser();
