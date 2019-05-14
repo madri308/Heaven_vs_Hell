@@ -29,11 +29,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     jsonparser.cpp \
+    human.cpp \
+    doublelist.cpp
 
 HEADERS += \
         mainwindow.h \
     jsonparser.h \
-    json.hpp
+    json.hpp \
+    human.h \
+    doublelist.h
 
 FORMS += \
         mainwindow.ui
