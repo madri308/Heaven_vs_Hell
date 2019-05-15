@@ -31,7 +31,8 @@ SOURCES += \
     jsonparser.cpp \
     human.cpp \
     doublelist.cpp \
-    world.cpp
+    world.cpp \
+    node.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     json.hpp \
     human.h \
     doublelist.h \
-    world.h
+    world.h \
+    node.h
 
 FORMS += \
         mainwindow.ui

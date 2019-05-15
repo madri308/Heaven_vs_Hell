@@ -18,7 +18,7 @@ struct Human
     string sins[3][7];
     string goodDeeds[3][7];
 
-    Human(int id, string name, string surname, string country, string rreligion, string email, string job,string sins[3][7],string goodDeeds[3][7]);
+    Human(int id, string name, string surname, string country, string religion, string job, string email,int childrens,string sins[3][7],string goodDeeds[3][7]);
 };
 
 #endif // HUMAN_H

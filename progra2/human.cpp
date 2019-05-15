@@ -1,6 +1,6 @@
 #include "human.h"
 
-Human::Human(int id, string name, string surname, string country, string religion, string email, string job,string sins[3][7],string goodDeeds[3][7])
+Human::Human(int id, string name, string surname, string country, string religion, string job, string email,int childrens,string sins[3][7],string goodDeeds[3][7])
 {
     this->id = id;
     this->name = name;

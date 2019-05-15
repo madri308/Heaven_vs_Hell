@@ -7,10 +7,9 @@ using json = nlohmann::json;
 using namespace std;
 
 
-class jsonParser
+struct JsonParser
 {
-public:
-    jsonParser();
+    JsonParser(string names[], string lastNames[],string jobs[],string religions[],string countries[]);
     json file;
 };
 
