@@ -9,6 +9,10 @@ struct DoubleList
     DoubleList();
     void add(Human *human);
 
+    bool isFull();
+    bool isEmpty();
+    void remove(int id);
+
     Node *first = nullptr;
     int quantity = 0;
 };
