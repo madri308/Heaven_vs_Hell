@@ -12,13 +12,13 @@ struct Human
     string surname;
     string country;
     string religion;
-    string email;
+    //string email;
     string job;
     QString birth;
-    string sins[3][7];
-    string goodDeeds[3][7];
+    //string sins[3][7];
+    //string goodDeeds[3][7];
 
-    Human(int id, string name, string surname, string country, string religion, string job, string email,int childrens,string sins[3][7],string goodDeeds[3][7]);
+    Human(int id, string name, string surname, string country, string religion, string job);
 };
 
 #endif // HUMAN_H

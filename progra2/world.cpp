@@ -22,7 +22,7 @@ void World::generatePeople(){
         int countriesPos = rand() % 100;
         int jobPos = rand() % 50;
         int childrens = rand() % 8;
-        Human *person = new Human(human,names[namePos],lastnames[namePos],countries[countriesPos],religions[religionPos],childrens);
+        Human *person = new Human(human,names[namePos],lastnames[namePos],countries[countriesPos],religions[religionPos],jobs[jobPos]);
         this->peolpe.add(person);
         //Crear arbol avl,Splay con humanos del mismo apellido y pais que se determino.
     }

@@ -7,8 +7,8 @@ struct Node
 {
 public:
     Node(Human *data);
-    Node *next;
-    Node *prev;
+    Node *next = nullptr;
+    Node *prev = nullptr;
     Human *data;
 };
 

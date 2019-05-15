@@ -21,3 +21,16 @@ void DoubleList::add(Human *human)
     }
     this->quantity++;
 }
+
+Node DoubleList::get(int id)
+{
+    Node *temp = first;
+    while(temp){
+        if(temp->data->id == id){
+            return *temp;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return nullptr;
+}

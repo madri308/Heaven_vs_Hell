@@ -8,6 +8,7 @@ struct DoubleList
 
     DoubleList();
     void add(Human *human);
+    Node get(int id);
 
     Node *first = nullptr;
     int quantity = 0;
