@@ -22,6 +22,7 @@ void DoubleList::add(Human *human)
     this->quantity++;
 }
 
+
 bool DoubleList::isEmpty()
 {
     if (first == nullptr)
