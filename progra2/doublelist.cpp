@@ -34,3 +34,16 @@ Node DoubleList::get(int id)
     }
     return nullptr;
 }
+
+bool DoubleList::exist(int id)
+{
+    Node *temp = first;
+    while(temp){
+        if(temp->data->id == id){
+            return true;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return false;
+}

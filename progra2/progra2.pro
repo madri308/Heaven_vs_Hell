@@ -32,7 +32,8 @@ SOURCES += \
     human.cpp \
     doublelist.cpp \
     world.cpp \
-    node.cpp
+    node.cpp \
+    worldwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,10 +42,12 @@ HEADERS += \
     human.h \
     doublelist.h \
     world.h \
-    node.h
+    node.h \
+    worldwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    worldwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

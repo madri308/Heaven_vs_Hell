@@ -10,7 +10,7 @@ using namespace std;
 struct World
 {
     World();
-    void generatePeople();
+    void generatePeople(int peopleQuan);
     //Datos para generar personas.
     string names[1000];
     string lastnames[1000];
