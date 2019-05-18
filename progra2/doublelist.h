@@ -11,6 +11,10 @@ struct DoubleList
     Node get(int id);
     bool exist(int id);
 
+    bool isFull();
+    bool isEmpty();
+    void remove(int id);
+
     Node *first = nullptr;
     int quantity = 0;
 };

@@ -22,17 +22,16 @@ void DoubleList::add(Human *human)
     this->quantity++;
 }
 
-Node DoubleList::get(int id)
+
+bool DoubleList::isEmpty()
 {
-    Node *temp = first;
-    while(temp){
-        if(temp->data->id == id){
-            return *temp;
-        }else{
-            temp = temp->next;
-        }
+    if (first == nullptr)
+    {
+        return true;
     }
-    return nullptr;
+    else{
+        return false;
+    }
 }
 
 bool DoubleList::exist(int id)
@@ -47,3 +46,5 @@ bool DoubleList::exist(int id)
     }
     return false;
 }
+
+
