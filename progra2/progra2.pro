@@ -33,7 +33,8 @@ SOURCES += \
     doublelist.cpp \
     world.cpp \
     node.cpp \
-    worldwindow.cpp
+    worldwindow.cpp \
+    avltree.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +44,8 @@ HEADERS += \
     doublelist.h \
     world.h \
     node.h \
-    worldwindow.h
+    worldwindow.h \
+    avltree.h
 
 FORMS += \
         mainwindow.ui \

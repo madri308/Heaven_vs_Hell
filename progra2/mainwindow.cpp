@@ -14,15 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->create, SIGNAL (released()),this, SLOT (create()));
-
 }
+
 void MainWindow::create(){
-    World *world = new World();
     QString quant = ui->people->toPlainText();
     world->generatePeople(quant.toInt());
-    world->peolpe.get(9)->data->showInfo();
-
     WorldWindow *w = new WorldWindow();
+    w->world = this->world;
     w->show();
     this->hide();
 }

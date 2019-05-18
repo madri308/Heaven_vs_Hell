@@ -2,7 +2,6 @@
 #define WORLD_H
 #include "string.h"
 #include "doublelist.h"
-#include "human.h"
 
 using namespace std;
 
