@@ -8,7 +8,7 @@ struct DoubleList
 
     DoubleList();
     void add(Human *human);
-    Node get(int id);
+    Node* get(int id);
     bool exist(int id);
 
     bool isFull();

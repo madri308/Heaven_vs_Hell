@@ -46,5 +46,39 @@ bool DoubleList::exist(int id)
     }
     return false;
 }
+Node* DoubleList::get(int id)
+{
+    Node *temp = first;
+    while(temp){
+        if(temp->data->id == id){
+            return temp;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return nullptr;
+}
+void DoubleList::remove(int id)
+{
+    Node *toRemove = get(id);
 
-
+    if (first == toRemove)
+    {
+        first = first->next;
+        first->prev->next = nullptr;
+        first->prev = nullptr;
+    }
+    else if(toRemove->next == nullptr)
+    {
+        toRemove->prev->next = nullptr;
+        toRemove->prev = nullptr;
+    }
+    else
+    {
+        Node *tmp = toRemove->prev;
+        tmp->next = toRemove->next;
+        toRemove->next = nullptr;
+        tmp->next->prev = toRemove->prev;
+        toRemove->prev = nullptr;
+    }
+  }

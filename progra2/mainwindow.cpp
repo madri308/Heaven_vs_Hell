@@ -20,7 +20,7 @@ void MainWindow::create(){
     World *world = new World();
     QString quant = ui->people->toPlainText();
     world->generatePeople(quant.toInt());
-    world->peolpe.get(9).data->showInfo();
+    world->peolpe.get(9)->data->showInfo();
 
     WorldWindow *w = new WorldWindow();
     w->show();
