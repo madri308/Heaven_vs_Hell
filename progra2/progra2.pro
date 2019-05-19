@@ -34,7 +34,6 @@ SOURCES += \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
-    avltree.cpp \
     binarysearchtree.cpp
 
 HEADERS += \
@@ -46,7 +45,6 @@ HEADERS += \
     world.h \
     node.h \
     worldwindow.h \
-    avltree.h \
     binarysearchtree.h
 
 FORMS += \
@@ -75,4 +73,6 @@ target.path = $$PREFIX/bin/myproject
 
 # Declare my_resources and target objects to be installed.
 INSTALLS += my_resources target
+
+DISTFILES +=
 

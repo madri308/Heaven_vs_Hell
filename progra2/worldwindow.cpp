@@ -20,14 +20,24 @@ WorldWindow::~WorldWindow()
     delete ui;
 }
 void WorldWindow::generateSins(){
-    Node *temp = world->peolpe.first;
+    Node *temp = world->peolpe.first;   //EMPIEZA POR LA PRIMERA PERSONA
     srand(time(NULL));
-    while(temp){
+    while(temp){    //MIENTRAS EXISTAN MAS PERSONAS.
+        //GENERA LOS NUMEROS RANDOM PARA LOS PECADOS EN UNA LISTA
         int percetages[7] = {rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100};
-        for(int t = 0; t<7 ; t++){
+        for(int t = 0; t<7 ; t++){  //CICLO PARA ESTABLECER PECADOS.
+            //LE ASIGNA A CADA PECADO DE LA PERSONA SU PORCENTAJE RANDOM
             temp->data->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+percetages[t]);
+            for(Human child:temp->data->childrens){ //RECORRE LA LISTA DE HIJOS
+                //Y A SUS PECADOS LE SUMA EL 50% DEL PAPA.
+                child.sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*50/100));
+                for(Human child:child.childrens){   //RECORRE LOS HIJOS DEL HIJO(NIETOS)
+                    //Y A SUS PECADOS LES SUMA EL 25% DEL PAPA DEL PAPA(EL ABUELO)
+                    child.sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*25/100));
+                }
+            }
         }
-        temp = temp->next;
+        temp = temp->next;  //PASA A LA SIGUIENTE PERSONA
     }
     msgBox.setWindowTitle("Satanas haciendo de las suyas.");
     msgBox.setText(QString::number(world->peolpe.quantity)+" personas han pecado de manera exitosa.");
