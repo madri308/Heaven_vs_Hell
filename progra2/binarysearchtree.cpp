@@ -6,7 +6,7 @@ BinarySearchTree::BinarySearchTree()
     root = nullptr;
 }
 
-BinarySearchTree::insert(Human )
+void BinarySearchTree::insert(Human *d)
 {
 
 }
