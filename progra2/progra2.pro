@@ -34,7 +34,8 @@ SOURCES += \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
-    avltree.cpp
+    avltree.cpp \
+    binarysearchtree.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     world.h \
     node.h \
     worldwindow.h \
-    avltree.h
+    avltree.h \
+    binarysearchtree.h
 
 FORMS += \
         mainwindow.ui \
