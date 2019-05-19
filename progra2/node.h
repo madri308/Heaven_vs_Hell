@@ -10,6 +10,7 @@ public:
     Node *next = nullptr;
     Node *prev = nullptr;
     Human *data;
+    int height;
 };
 
 #endif // NODE_H
