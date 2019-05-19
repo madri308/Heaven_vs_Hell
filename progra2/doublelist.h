@@ -8,13 +8,9 @@ struct DoubleList
 
     DoubleList();
     void add(Human *human);
-<<<<<<< HEAD
-    Node *get(int id);
-=======
     Node* get(int id);
     Node* getBySurnameAndCountrie(string surname,string country);
     bool exist(int id);
->>>>>>> d9690e9c466c477d42d494068c6e165a53e6e53b
 
     bool isFull();
     bool isEmpty();
