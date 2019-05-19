@@ -37,6 +37,7 @@ void World::generatePeople(int peopleQuan){
         Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos],religions[religionPos],jobs[jobPos],childrens,dt);
         this->peolpe.add(person);           //Mete el humano a la lista
         //Se fija si existe un arbol de la familia.
+        /*
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.
             peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->add(person);
@@ -49,6 +50,6 @@ void World::generatePeople(int peopleQuan){
         }else{//SI NO EXISTE ARBOL DE LA FAMILIA
             AVLTree *fam = new AVLTree();   //Entonces crea el arbol
             person->family = fam;           //Y lo setea como atributo.
-        }
+        }*/
     }
 }
