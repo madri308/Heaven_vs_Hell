@@ -7,4 +7,8 @@ struct BinarySearchTree
 {
     BinarySearchTree();
     BSTNode *root;
+
+    void insert(Human *d);
+    BSTNode * insert(Human *d,BSTNode *node);
+
 };
