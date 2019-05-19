@@ -2,6 +2,7 @@
 #define WORLD_H
 #include "string.h"
 #include "doublelist.h"
+#include "human.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ using namespace std;
 struct World
 {
     World();
-    void generatePeople(int peopleQuan);
+    void generatePeople();
     //Datos para generar personas.
     string names[1000];
     string lastnames[1000];

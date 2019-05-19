@@ -32,9 +32,7 @@ SOURCES += \
     human.cpp \
     doublelist.cpp \
     world.cpp \
-    node.cpp \
-    worldwindow.cpp \
-    avltree.cpp
+    node.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,16 +41,10 @@ HEADERS += \
     human.h \
     doublelist.h \
     world.h \
-    node.h \
-<<<<<<< HEAD
-=======
-    worldwindow.h \
->>>>>>> d9690e9c466c477d42d494068c6e165a53e6e53b
-    avltree.h
+    node.h
 
 FORMS += \
-        mainwindow.ui \
-    worldwindow.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
