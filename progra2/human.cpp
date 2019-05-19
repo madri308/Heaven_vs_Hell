@@ -37,3 +37,8 @@ void Human::showInfo()
     cout<<"hijos: "+to_string(this->childrens.size())<<endl;
     cout<<this->birth;
 }
+
+Human::Human()
+{
+
+}

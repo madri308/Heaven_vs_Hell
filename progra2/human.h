@@ -23,6 +23,7 @@ struct Human
     char *birth;
     Human(int id, string name, string surname, string country, string religion, string job, size_t childrens,char* dt);
     void showInfo();
+    Human();
 };
 
 #endif // HUMAN_H
