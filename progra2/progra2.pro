@@ -41,7 +41,8 @@ HEADERS += \
     human.h \
     doublelist.h \
     world.h \
-    node.h
+    node.h \
+    avltree.h
 
 FORMS += \
         mainwindow.ui
