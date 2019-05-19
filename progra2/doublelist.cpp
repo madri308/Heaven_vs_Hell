@@ -34,27 +34,58 @@ bool DoubleList::isEmpty()
     }
 }
 
+bool DoubleList::exist(int id)
+{
+    Node *temp = first;
+    while(temp){
+        if(temp->data->id == id){
+            return true;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return false;
+}
+Node* DoubleList::getBySurnameAndCountrie(string surname,string country){
+    Node *temp = first;
+    while(temp){
+        if(temp->data->surname == surname && temp->data->country == country){
+            return temp;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return nullptr;
+}
+Node* DoubleList::get(int id)
+{
+    Node *temp = first;
+    while(temp){
+        if(temp->data->id == id){
+            return temp;
+        }else{
+            temp = temp->next;
+        }
+    }
+    return nullptr;
+}
 void DoubleList::remove(int id)
 {
-    Node *toRemove = get(id);
-
-    if (first == toRemove)
-    {
-        first = first->next;
-        first->prev->next = nullptr;
-        first->prev = nullptr;
-    }
-    else if(toRemove->next == nullptr)
-    {
-        toRemove->prev->next = nullptr;
-        toRemove->prev = nullptr;
-    }
-    else
-    {
-        Node *tmp = toRemove->prev;
-        tmp->next = toRemove->next;
-        toRemove->next = nullptr;
-        tmp->next->prev = toRemove->prev;
-        toRemove->prev = nullptr;
+    if(this->exist(id)){
+        Node *toRemove = get(id);
+        if (toRemove == first){
+            first = first->next;
+            first->prev->next = nullptr;
+            first->prev = nullptr;
+        }
+        else if(toRemove->next == nullptr){
+            toRemove->prev->next = nullptr;
+            toRemove->prev = nullptr;
+        }
+        else{
+            toRemove->prev->next = toRemove->next;
+            toRemove->next->prev = toRemove->prev;
+            toRemove->next = toRemove->prev = nullptr;
+        }
     }
   }
