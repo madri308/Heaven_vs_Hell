@@ -2,7 +2,7 @@
 #include <human.h>
 
 
-/*AVLTree::AVLTree()
+AVLTree::AVLTree()
 {
 
 }
@@ -15,4 +15,4 @@ void AVLTree::add(Human *human)
 Human AVLTree::getRandom()
 {
 
-}*/
+}

@@ -1,5 +1,6 @@
 #ifndef AVLTREE_H
 #define AVLTREE_H
+<<<<<<< HEAD
 // C++ program to insert a node in AVL tree
 #include<bits/stdc++.h>
 using namespace std;
@@ -167,4 +168,15 @@ void preOrder(TreeNode *root)
     }
 }
 
+=======
+#include "human.h"
+struct AVLTree
+{
+public:
+    AVLTree();
+    void add(Human *human);
+    Human getRandom();
+};
+
+>>>>>>> d9690e9c466c477d42d494068c6e165a53e6e53b
 #endif // AVLTREE_H

@@ -44,7 +44,10 @@ HEADERS += \
     doublelist.h \
     world.h \
     node.h \
+<<<<<<< HEAD
+=======
     worldwindow.h \
+>>>>>>> d9690e9c466c477d42d494068c6e165a53e6e53b
     avltree.h
 
 FORMS += \
