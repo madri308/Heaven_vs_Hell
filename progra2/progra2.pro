@@ -34,7 +34,9 @@ SOURCES += \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
-    avltree.cpp
+    avltree.cpp \
+    binarysearchtree.cpp \
+    bstnode.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,11 +46,10 @@ HEADERS += \
     doublelist.h \
     world.h \
     node.h \
-<<<<<<< HEAD
-=======
     worldwindow.h \
->>>>>>> d9690e9c466c477d42d494068c6e165a53e6e53b
-    avltree.h
+    avltree.h \
+    binarysearchtree.h \
+    bstnode.h
 
 FORMS += \
         mainwindow.ui \
