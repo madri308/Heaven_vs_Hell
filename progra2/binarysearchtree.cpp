@@ -98,3 +98,69 @@ int BinarySearchTree::getHeight(Node *node)
     return height;
 }
 
+int BinarySearchTree::getMax(int a, int b)
+{
+    if (a>b)
+    {
+        return a;
+    }
+    else {
+        return b;
+    }
+}
+
+//Chequea cual es mayor
+Node *BinarySearchTree::greater(Node *tree)
+{
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+    else if (tree->next == nullptr)
+    {
+        return tree;
+    }
+    else {
+        return greater(tree->next);
+    }
+}
+
+Node *BinarySearchTree::removeElement(Human *human)
+{
+    root = removeElement(human, root);
+    return root;
+}
+
+Node *BinarySearchTree::removeElement(Human *human, Node *tree)
+{
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+    else if (human->id < tree->data->id)
+    {
+        tree->prev = removeElement(human, tree->prev);
+    }
+    else if (human->id > tree->data->id)
+    {
+        tree->next = removeElement(human, tree->next);
+    }
+    else if (tree->next == nullptr && tree->prev == nullptr)
+    {
+        tree = nullptr;
+    }
+    else if (tree->prev == nullptr)
+    {
+        tree = tree->next;
+    }
+    else if (tree->next == nullptr)
+    {
+        tree = tree->prev;
+    }
+    else {
+        Node *max = greater(tree->prev); //mayor de los menores
+        tree->prev = removeElement(max->data, tree->prev);
+        tree->data = max->data;
+    }
+    return tree;
+}

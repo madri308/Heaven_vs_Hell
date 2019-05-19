@@ -11,5 +11,9 @@ struct BinarySearchTree
     Node * insert(Human *d,Node *node);
     int nodeCounter(Node *node);
     int getHeight(Node *node);
-
+    int getMax(int a, int b);
+    Node *greater(Node* tree);
+    Node *removeElement(Human *human);
+    Node *removeElement(Human *human, Node* tree);
 };
+
