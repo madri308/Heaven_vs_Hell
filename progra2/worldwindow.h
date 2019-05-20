@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "world.h"
 #include "QMessageBox"
+#include "QLabel"
 
 namespace Ui {
 class WorldWindow;
@@ -14,18 +15,20 @@ class WorldWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    World *world;
+    World world;
     QMessageBox msgBox;
     explicit WorldWindow(QWidget *parent = nullptr);
     ~WorldWindow();
+    void showHumans();
+    Ui::WorldWindow *ui;
 
 private slots:
     void generatePeople();
     void generateSins();
     void generateGoodDeeds();
+    void top10();
 
 private:
-    Ui::WorldWindow *ui;
 };
 
 #endif // WORLDWINDOW_H

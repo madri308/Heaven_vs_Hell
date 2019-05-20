@@ -6,6 +6,7 @@
 #include "human.h"
 #include <ctime>
 #include <chrono>
+#include "sstream"
 #include "binarysearchtree.h"
 
 using namespace std;
@@ -34,7 +35,7 @@ void World::generatePeople(int peopleQuan){
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         size_t childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
-        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos],religions[religionPos],jobs[jobPos],childrens,dt);
+        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
         this->peolpe.add(person);           //Mete el humano a la lista
         //Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
@@ -46,9 +47,34 @@ void World::generatePeople(int peopleQuan){
             for(size_t child = 0 ; child < person->childrens.size() ; child++){
                 //person[child] = person->family->getRandom();
             }
-        }else{//SI NO EXISTE ARBOL DE LA FAMILIA
+        }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
             BinarySearchTree *fam = new BinarySearchTree();   //Entonces crea el arbol
             person->family = fam;           //Y lo setea como atributo.
         }
     }
+}
+
+string* World::top10SinList()
+{
+    string Slist[10];
+    for(int c = 0 ; c < 10 ; c++){
+        for(int s = c+1; s<100;s++){
+            int cant1,cant2;
+            std::istringstream iss1 (this->countries[c][1]);
+            std::istringstream iss2 (this->countries[s][1]);
+            iss1 >> cant1;
+            iss2 >> cant2;
+            if(cant1<cant2){
+                string temp1 = this->countries[c][1];
+                string temp2 = this->countries[c][0];
+                this->countries[c][1] = this->countries[s][1];
+                this->countries[c][0] = this->countries[s][0];
+                this->countries[s][1] = temp1;
+                this->countries[s][0] = temp2;
+            }
+        }
+        Slist[c] = this->countries[c][0];
+        cout<<Slist[c]+" "+this->countries[c][1]<<endl;
+    }
+    return Slist;
 }

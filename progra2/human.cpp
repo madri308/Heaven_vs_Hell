@@ -38,7 +38,5 @@ void Human::showInfo()
     cout<<this->birth;
 }
 
-Human::Human()
-{
+Human::Human(){}
 
-}

@@ -27,17 +27,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
     jsonparser.cpp \
     human.cpp \
     doublelist.cpp \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
-    binarysearchtree.cpp
+    binarysearchtree.cpp \
+    demon.cpp
 
 HEADERS += \
-        mainwindow.h \
     jsonparser.h \
     json.hpp \
     human.h \
@@ -45,10 +44,10 @@ HEADERS += \
     world.h \
     node.h \
     worldwindow.h \
-    binarysearchtree.h
+    binarysearchtree.h \
+    demon.h
 
 FORMS += \
-        mainwindow.ui \
     worldwindow.ui
 
 # Default rules for deployment.
@@ -75,4 +74,7 @@ target.path = $$PREFIX/bin/myproject
 INSTALLS += my_resources target
 
 DISTFILES +=
+
+RESOURCES += \
+    resources.qrc
 

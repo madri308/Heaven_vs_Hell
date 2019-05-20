@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>worldwide.png</file>
+        <file>data.json</file>
+        <file>baby.ico</file>
+        <file>demon.ico</file>
+        <file>please.ico</file>
+    </qresource>
+</RCC>
