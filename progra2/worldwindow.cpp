@@ -112,6 +112,7 @@ void WorldWindow::top10()
 {
     QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
     msgBox.setWindowIcon(pixmap);
+    msgBox.setText("Top 10 paises más pecadores:\n\n");
     for(int c = 0 ; c < 10 ; c++){
         for(int s = c+1; s<100;s++){
             int cant1,cant2;

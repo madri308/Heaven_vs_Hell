@@ -37,7 +37,7 @@ void World::generatePeople(int peopleQuan){
         //CREA EL HUMANO CON SUS DATOS
         Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
         this->peolpe.add(person);           //Mete el humano a la lista
-        //Se fija si existe un arbol de la familia.
+        /*//Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.
             peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(person);
@@ -50,7 +50,7 @@ void World::generatePeople(int peopleQuan){
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
             BinarySearchTree *fam = new BinarySearchTree();   //Entonces crea el arbol
             person->family = fam;           //Y lo setea como atributo.
-        }
+        }*/
     }
 }
 

@@ -33,13 +33,6 @@ SOURCES += \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
-<<<<<<< HEAD
-    binarysearchtree.cpp \
-    demon.cpp \
-    avltree.cpp
-=======
-    binarysearchtree.cpp
->>>>>>> parent of 15226ef... AVL Tree
 
 HEADERS += \
     jsonparser.h \
@@ -49,13 +42,6 @@ HEADERS += \
     world.h \
     node.h \
     worldwindow.h \
-<<<<<<< HEAD
-    binarysearchtree.h \
-    demon.h \
-    avltree.h
-=======
-    binarysearchtree.h
->>>>>>> parent of 15226ef... AVL Tree
 
 FORMS += \
     worldwindow.ui
