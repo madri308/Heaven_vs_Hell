@@ -21,7 +21,7 @@ Node* BinarySearchTree::insert(Human *human, Node *node)
     {
         node->next = insert(human,node->next);
     }
-    else if(node->data->id > human->id)
+    else if(node->data->id >= human->id)
     {
         node->prev = insert(human, node->prev);
     }
