@@ -1,15 +1,15 @@
 #ifndef DOUBLELIST_H
 #define DOUBLELIST_H
+#include "human.h"
 #include "node.h"
-#include "string"
 
 struct DoubleList
 {
 
     DoubleList();
-    void add(Node *human);
+    void add(Human *human);
     Node* get(int id);
-    Node* getBySurnameAndCountrie(std::string surname,std::string country);
+    Node* getBySurnameAndCountrie(string surname,string country);
     bool exist(int id);
 
     bool isFull();

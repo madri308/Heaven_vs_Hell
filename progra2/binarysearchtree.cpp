@@ -6,9 +6,9 @@ BinarySearchTree::BinarySearchTree()
     root = nullptr;
 }
 
-void BinarySearchTree::insert(Node *d)
+void BinarySearchTree::insert(Human *d)
 {
-    root = insert(d->data,root);
+    root = insert(d,root);
 }
 
 Node* BinarySearchTree::insert(Human *human, Node *node)
@@ -19,11 +19,11 @@ Node* BinarySearchTree::insert(Human *human, Node *node)
     }
     else if (node->data->id < human->id)
     {
-        node->right = insert(human,node->right);
+        node->next = insert(human,node->next);
     }
     else if(node->data->id >= human->id)
     {
-        node->left = insert(human, node->left);
+        node->prev = insert(human, node->prev);
     }
 
     return node;
@@ -36,7 +36,7 @@ int BinarySearchTree::nodeCounter(Node *node)
         return 0;
     }
     else {
-        return 1+nodeCounter(node->right)+nodeCounter(node->left);
+        return 1+nodeCounter(node->next)+nodeCounter(node->prev);
     }
 }
 
@@ -58,8 +58,8 @@ int BinarySearchTree::getHeight(Node *node)
         //inicia en 1 para contar la raiz
         height = 1;
 
-        r_leftS = node->left;
-        r_rightS = node->right;
+        r_leftS = node->prev;
+        r_rightS = node->next;
 
         //si ninguno de los hijos es nulo
         if (r_leftS != nullptr && r_rightS != nullptr)
@@ -116,12 +116,12 @@ Node *BinarySearchTree::greater(Node *tree)
     {
         return nullptr;
     }
-    else if (tree->right == nullptr)
+    else if (tree->next == nullptr)
     {
         return tree;
     }
     else {
-        return greater(tree->right);
+        return greater(tree->next);
     }
 }
 
@@ -139,27 +139,27 @@ Node *BinarySearchTree::removeElement(Human *human, Node *tree)
     }
     else if (human->id < tree->data->id)
     {
-        tree->left = removeElement(human, tree->left);
+        tree->prev = removeElement(human, tree->prev);
     }
     else if (human->id > tree->data->id)
     {
-        tree->right = removeElement(human, tree->right);
+        tree->next = removeElement(human, tree->next);
     }
-    else if (tree->right == nullptr && tree->left == nullptr)
+    else if (tree->next == nullptr && tree->prev == nullptr)
     {
         tree = nullptr;
     }
-    else if (tree->left == nullptr)
+    else if (tree->prev == nullptr)
     {
-        tree = tree->right;
+        tree = tree->next;
     }
-    else if (tree->right == nullptr)
+    else if (tree->next == nullptr)
     {
-        tree = tree->left;
+        tree = tree->prev;
     }
     else {
-        Node *max = greater(tree->left); //mayor de los menores
-        tree->left = removeElement(max->data, tree->left);
+        Node *max = greater(tree->prev); //mayor de los menores
+        tree->prev = removeElement(max->data, tree->prev);
         tree->data = max->data;
     }
     return tree;
