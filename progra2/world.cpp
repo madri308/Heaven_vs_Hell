@@ -38,7 +38,9 @@ void World::generatePeople(int peopleQuan){
         size_t childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
         Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
-        this->peolpe.add(person);           //Mete el humano a la lista
+        Node *node = new Node(person);
+        this->peolpe.add(node);           //Mete el humano a la lista
+        this->treePeople.insert(node);
         /*//Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.

@@ -1,17 +1,16 @@
 #ifndef DEMON_H
 #define DEMON_H
 #include "string"
-using namespace std;
 
 struct Demon
 {
 public:
-    Demon(string name,string sin);
+    Demon(std::string name,std::string sin);
     Demon();
     void condemn();
 
-    string name;
-    string sin;
+    std::string name;
+    std::string sin;
 };
 
 #endif // DEMON_H

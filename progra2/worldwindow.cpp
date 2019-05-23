@@ -5,7 +5,6 @@
 #include "QMessageBox"
 #include "QListWidget"
 
-using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::WorldWindow)

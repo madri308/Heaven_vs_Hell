@@ -35,7 +35,8 @@ SOURCES += \
     worldwindow.cpp \
     demon.cpp \
     hell.cpp \
-    heaven.cpp
+    heaven.cpp \
+    binarysearchtree.cpp
 
 HEADERS += \
     jsonparser.h \
@@ -47,7 +48,8 @@ HEADERS += \
     worldwindow.h \
     demon.h \
     hell.h \
-    heaven.h
+    heaven.h \
+    binarysearchtree.h
 
 FORMS += \
     worldwindow.ui
