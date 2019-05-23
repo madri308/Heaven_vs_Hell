@@ -33,6 +33,9 @@ SOURCES += \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
+    demon.cpp \
+    hell.cpp \
+    heaven.cpp
 
 HEADERS += \
     jsonparser.h \
@@ -42,6 +45,9 @@ HEADERS += \
     world.h \
     node.h \
     worldwindow.h \
+    demon.h \
+    hell.h \
+    heaven.h
 
 FORMS += \
     worldwindow.ui

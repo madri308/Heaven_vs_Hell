@@ -2,6 +2,7 @@
 #define WORLD_H
 #include "string.h"
 #include "doublelist.h"
+#include "hell.h"
 
 using namespace std;
 
@@ -15,8 +16,9 @@ struct World
     string names[1000];
     string lastnames[1000];
     string religions[10];
-    string countries[100][2];
+    string countries[100][3];
     string jobs[50];
+    Hell *hell;
 
     DoubleList peolpe;
 };

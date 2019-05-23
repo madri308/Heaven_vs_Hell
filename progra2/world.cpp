@@ -8,6 +8,7 @@
 #include <chrono>
 #include "sstream"
 #include "binarysearchtree.h"
+#include "hell.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ World::World()
 {
     //Agarra las listas y le mete los datos del json.
     JsonParser *m = new JsonParser(this->names,this->lastnames,this->jobs,this->religions,this->countries);
+    this->hell = new Hell();
 }
 
 void World::generatePeople(int peopleQuan){

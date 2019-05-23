@@ -20,14 +20,17 @@ public:
     explicit WorldWindow(QWidget *parent = nullptr);
     ~WorldWindow();
     void showHumans();
+    void sortCountries(int p);
     Ui::WorldWindow *ui;
 
 private slots:
     void generatePeople();
     void generateSins();
     void generateGoodDeeds();
-    void top10();
-
+    void top10sins();
+    void top5sins();
+    void top10GD();
+    void top5GD();
 private:
 };
 

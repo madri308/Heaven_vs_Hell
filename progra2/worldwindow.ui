@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>219</width>
-    <height>361</height>
+    <height>368</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,7 +40,7 @@
       <x>0</x>
       <y>0</y>
       <width>211</width>
-      <height>121</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -88,7 +88,7 @@
        <item>
         <widget class="QPushButton" name="generateSins">
          <property name="text">
-          <string>Pecados</string>
+          <string>Pecar</string>
          </property>
         </widget>
        </item>
@@ -102,9 +102,30 @@
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="top10">
+      <widget class="QPushButton" name="top10sins">
        <property name="text">
-        <string>Top 10 paises más pecadores</string>
+        <string>Paises más pecadores</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="top5sins">
+       <property name="text">
+        <string>Paises menos pecadores</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="top10GD">
+       <property name="text">
+        <string>Paises con más buenas acciones</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="top5GD">
+       <property name="text">
+        <string>Paises con menos buenas acciones</string>
        </property>
       </widget>
      </item>
@@ -121,9 +142,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>210</y>
       <width>193</width>
-      <height>211</height>
+      <height>151</height>
      </rect>
     </property>
    </widget>

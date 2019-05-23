@@ -15,7 +15,10 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->generatePeople, SIGNAL (released()),this, SLOT (generatePeople()));
     connect(ui->generateGoodDeeds, SIGNAL (released()),this, SLOT (generateGoodDeeds()));
     connect(ui->generateSins, SIGNAL (released()),this, SLOT (generateSins()));
-    connect(ui->top10, SIGNAL (released()),this, SLOT (top10()));
+    connect(ui->top10sins, SIGNAL (released()),this, SLOT (top10sins()));
+    connect(ui->top5sins, SIGNAL (released()),this, SLOT (top5sins()));
+    connect(ui->top10GD, SIGNAL (released()),this, SLOT (top10GD()));
+    connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
 }
 
 WorldWindow::~WorldWindow()
@@ -39,11 +42,19 @@ void WorldWindow::showHumans(){
         list->addItem(QString::fromStdString(temp->data->country));
         list->addItem(QString::fromStdString(temp->data->religion));
         list->addItem(QString::fromStdString(temp->data->job));
-        string m = "";
+        string s = "";
+        string g = "";
         for(int i = 0;i<7;i++){
-            m = m+temp->data->sins[i][1]+", ";
+            if(i == 6){
+                g = g+temp->data->goodDeeds[i][0]+temp->data->goodDeeds[i][1];
+                s = s+temp->data->sins[i][0]+temp->data->sins[i][1];
+            }else{
+                g = g+temp->data->goodDeeds[i][0]+temp->data->goodDeeds[i][1]+"  ";
+                s = s+temp->data->sins[i][0]+temp->data->sins[i][1]+"  ";
+            }
         }
-        list->addItem(QString::fromStdString(m));
+        list->addItem(QString::fromStdString(g));
+        list->addItem(QString::fromStdString(s));
         list->addItem("----------------------");
 
         temp = temp->next;
@@ -93,9 +104,20 @@ void WorldWindow::generateGoodDeeds(){
     Node *temp = world.peolpe.first;
     srand(time(NULL));
     while(temp){
+        int totalGD = 0;
         int percetages[7] = {rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100};
         for(int t = 0; t<7 ; t++){
             temp->data->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+percetages[t]);
+            totalGD = totalGD + percetages[t];
+        }
+        for(int country = 0; country < 100; country++){
+            if(temp->data->country == this->world.countries[country][0]){
+                int number;
+                std::istringstream iss (this->world.countries[country][2]);
+                iss >> number;
+                this->world.countries[country][2] = to_string(number+totalGD);
+                cout<<this->world.countries[country][2]<<endl;
+            }
         }
         temp = temp->next;
     }
@@ -107,33 +129,105 @@ void WorldWindow::generateGoodDeeds(){
     showHumans();
 
 }
-
-void WorldWindow::top10()
-{
-    QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
-    msgBox.setWindowIcon(pixmap);
-    msgBox.setText("Top 10 paises más pecadores:\n\n");
-    for(int c = 0 ; c < 10 ; c++){
+void WorldWindow::sortCountries(int p){
+    for(int c = 0 ; c < 100 ; c++){
         for(int s = c+1; s<100;s++){
             int cant1,cant2;
-            std::istringstream iss1 (world.countries[c][1]);
-            std::istringstream iss2 (world.countries[s][1]);
+            std::istringstream iss1 (world.countries[c][p]);
+            std::istringstream iss2 (world.countries[s][p]);
             iss1 >> cant1;
             iss2 >> cant2;
             if(cant1<cant2){
+                string temp0 = world.countries[c][2];
                 string temp1 = world.countries[c][1];
                 string temp2 = world.countries[c][0];
+                world.countries[c][2] = world.countries[s][2];
                 world.countries[c][1] = world.countries[s][1];
                 world.countries[c][0] = world.countries[s][0];
+                world.countries[s][2] = temp0;
                 world.countries[s][1] = temp1;
                 world.countries[s][0] = temp2;
             }
         }
-        msgBox.setWindowTitle("Top 10");
+    }
+}
+void WorldWindow::top5sins()
+{
+    sortCountries(1);
+    msgBox.setText("Top 5 paises menos pecadores:\n\n");
+    QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
+    msgBox.setWindowIcon(pixmap);
+    msgBox.setWindowTitle("Top 5");
+    for(int c = 0 ; c < 100 ; c++ ){
+        if(world.countries[c+5][1] == "0"){
+            int i = 4;
+            while(i>=0){
+                if(world.countries[c][1] == "0"){
+                    continue;
+                }
+                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c+i][0]+" "+world.countries[c+i][1]+"\n"));
+                i--;
+            }
+            msgBox.exec();
+            break;
+        }
+    }
+}
+
+void WorldWindow::top10GD()
+{
+    sortCountries(2);
+    msgBox.setText("Top 10 paises con buenas acciones:\n\n");
+    QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
+    msgBox.setWindowIcon(pixmap);
+    msgBox.setWindowTitle("Top 10");
+    for(int c = 0 ; c < 10 ; c++ ){
+        if(world.countries[c][2] == "0"){
+            continue;
+        }
+        msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c][0]+" "+world.countries[c][2]+"\n"));
+    }
+    msgBox.exec();
+}
+
+void WorldWindow::top5GD()
+{
+    sortCountries(2);
+    msgBox.setText("Top 5 paises con menos buenas acciones:\n\n");
+    QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
+    msgBox.setWindowIcon(pixmap);
+    msgBox.setWindowTitle("Top 5");
+    for(int c = 0 ; c < 100 ; c++ ){
+        if(world.countries[c+5][2] == "0"){
+            int i = 4;
+            while(i>=0){
+                if(world.countries[c][2] == "0"){
+                    continue;
+                }
+                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c+i][0]+" "+world.countries[c+i][2]+"\n"));
+                i--;
+            }
+            msgBox.exec();
+            break;
+        }
+    }
+}
+void WorldWindow::top10sins()
+{
+    sortCountries(1);
+    msgBox.setText("Top 10 paises más pecadores:\n\n");
+    QPixmap pixmap = QPixmap(":/new/prefix1/worldwide.png");
+    msgBox.setWindowIcon(pixmap);
+    msgBox.setWindowTitle("Top 10");
+    for(int c = 0 ; c < 10 ; c++ ){
+        if(world.countries[c][1] == "0"){
+            continue;
+        }
         msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c][0]+" "+world.countries[c][1]+"\n"));
     }
     msgBox.exec();
 }
+
 void WorldWindow::generatePeople(){
     QString quant = ui->people->toPlainText();
     world.generatePeople(quant.toInt());
