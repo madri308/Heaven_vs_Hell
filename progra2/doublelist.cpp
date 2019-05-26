@@ -1,14 +1,10 @@
 #include "doublelist.h"
 #include "node.h"
 
-DoubleList::DoubleList()
-{
+DoubleList::DoubleList(){}
 
-}
-
-void DoubleList::add(Human *human)
+void DoubleList::add(Node *node)
 {
-    Node *node = new Node(human);
     if(first == nullptr){
         first = node;
     }else{

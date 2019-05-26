@@ -3,6 +3,7 @@
 #include "string.h"
 #include "doublelist.h"
 #include "hell.h"
+#include "binarysearchtree.h"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ struct World
     Hell *hell;
 
     DoubleList peolpe;
+    BinarySearchTree famPeople;
+
 };
 
 #endif // WORLD_H
