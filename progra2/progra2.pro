@@ -26,6 +26,7 @@ CONFIG += c++11
 -DJSON_MultipleHeaders=ON
 
 SOURCES += \
+    avltree.cpp \
         main.cpp \
     jsonparser.cpp \
     human.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
     binarysearchtree.cpp
 
 HEADERS += \
+    avltree.h \
     jsonparser.h \
     json.hpp \
     human.h \

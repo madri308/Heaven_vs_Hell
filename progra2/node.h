@@ -12,6 +12,7 @@ public:
     Node *left = nullptr;
     Node *right = nullptr;
     Human *data;
+    int height;
 };
 
 #endif // NODE_H

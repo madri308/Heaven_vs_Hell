@@ -18,6 +18,7 @@ World::World()
     //Agarra las listas y le mete los datos del json.
     JsonParser *m = new JsonParser(this->names,this->lastnames,this->jobs,this->religions,this->countries);
     this->hell = new Hell();
+    this->peopleTree = new BinarySearchTree();
 }
 
 void World::generatePeople(int peopleQuan){
@@ -38,9 +39,9 @@ void World::generatePeople(int peopleQuan){
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         size_t childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
-        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
-        Node *node = new Node(person);
-        this->peolpe.add(node);           //Mete el humano a la lista
+        Node *humanNode = new Node(person);
+        this->peolpe.add(humanNode);           //Mete el humano a la lista
+        this->peopleTree->insert(person);
         /*//Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.

@@ -29,6 +29,31 @@ Node* BinarySearchTree::insert(Human *human, Node *node)
     return node;
 }
 
+Node *BinarySearchTree::search(int id, Node *root)
+{
+    // cuando el nodo es nulo, quiere decir que all� debe
+         // ubicar el valor, en un nuevo nodo
+         if (root == nullptr)
+         {
+             return nullptr;
+         }
+         else if (root->data->id == id)
+         {
+            return root;
+         }
+         // si el valor es mayor, llama recursivamente a insertar en el hijo
+         // derecho
+         else if (root->data->id < id)
+         {
+            return search(id, root->next);
+         }
+         // en caso contrario, va al lado izquierdo
+         else //(nodo.dato >= valor)
+         {
+            return search(id, root->prev);
+         }
+}
+
 int BinarySearchTree::nodeCounter(Node *node)
 {
     if (node == nullptr)
