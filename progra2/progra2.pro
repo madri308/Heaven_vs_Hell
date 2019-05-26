@@ -26,6 +26,7 @@ CONFIG += c++11
 -DJSON_MultipleHeaders=ON
 
 SOURCES += \
+    avltree.cpp \
         main.cpp \
     jsonparser.cpp \
     human.cpp \
@@ -35,9 +36,11 @@ SOURCES += \
     worldwindow.cpp \
     demon.cpp \
     hell.cpp \
-    heaven.cpp
+    heaven.cpp \
+    binarysearchtree.cpp
 
 HEADERS += \
+    avltree.h \
     jsonparser.h \
     json.hpp \
     human.h \
@@ -47,7 +50,8 @@ HEADERS += \
     worldwindow.h \
     demon.h \
     hell.h \
-    heaven.h
+    heaven.h \
+    binarysearchtree.h
 
 FORMS += \
     worldwindow.ui

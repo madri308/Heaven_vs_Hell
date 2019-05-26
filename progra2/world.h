@@ -12,6 +12,7 @@ struct World
     World();
     void generatePeople(int peopleQuan);
     string* top10SinList();
+    string *top5list();
     //Datos para generar personas.
     string names[1000];
     string lastnames[1000];
@@ -21,6 +22,7 @@ struct World
     Hell *hell;
 
     DoubleList peolpe;
+    BinarySearchTree *peopleTree;
 };
 
 #endif // WORLD_H

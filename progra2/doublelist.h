@@ -7,7 +7,7 @@ struct DoubleList
 {
 
     DoubleList();
-    void add(Human *human);
+    void add(Node *node);
     Node* get(int id);
     Node* getBySurnameAndCountrie(string surname,string country);
     bool exist(int id);
