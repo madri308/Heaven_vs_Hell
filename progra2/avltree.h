@@ -16,7 +16,8 @@ public:
     int getBalance(Node *node);
     void insert(Human *d);
     Node *insert(Node *root, Human *data);
-    Human getRandom();
+    Human *getRandom();
+    int nodeCounter(Node *root);
     int sins;
 };
 

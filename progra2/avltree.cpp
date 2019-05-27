@@ -127,7 +127,18 @@ void AVLTree::insert(Human *d)
 {
     root = insert(root,d);
 }
-Human AVLTree::getRandom()
+Human *AVLTree::getRandom()
 {
+    for(int i = 0; )
+}
 
+int AVLTree::nodeCounter(Node *root)
+{
+    if (root == nullptr)
+    {
+        return 0;
+    }
+    else {
+        return 1+nodeCounter(root->next)+nodeCounter(root->prev);
+    }
 }

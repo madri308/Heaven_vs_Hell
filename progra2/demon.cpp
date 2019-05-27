@@ -28,7 +28,9 @@ void Demon::condemn(DoubleList people)
 
                 if(difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR EL TMP1 CON EL TMP2
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if (this->name == "Belcebú")
@@ -38,7 +40,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if (this->name == "Satán")
@@ -48,7 +52,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if (this->name == "Abadón")
@@ -58,7 +64,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if (this->name == "Mammón")
@@ -68,7 +76,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if(this->name == "Belfegor")
@@ -78,7 +88,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
             else if (this->name == "Asmodeo")
@@ -88,12 +100,62 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *temp;
+                    tmp2 = tmp;
+                    temp = tmp;
                 }
             }
-
         }
-
         tmp = tmp->next;
+    }
+
+    Node *tmp3 = copy.first;
+
+    for(int i = 0; i <= percentage; i++)
+    {
+        this->heap[i] = tmp3;
+        tmp3 = tmp3->next;
+    }
+
+}
+
+void Demon::heapify(vector<Node *> arr, int n, int i)
+{
+    int largest = i; // Initialize largest as root
+        int l = 2*i + 1; // left = 2*i + 1
+        int r = 2*i + 2; // right = 2*i + 2
+
+        // If left child is larger than root
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+
+        // If right child is larger than largest so far
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+
+        // If largest is not root
+        if (largest != i)
+        {
+            swap(arr[i], arr[largest]);
+
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
+        }
+}
+
+void Demon::heapSort(vector<Node *> arr, int n)
+{
+    // Build heap (rearrange array)
+    for (size_t i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    // One by one extract an element from heap
+    for (int i=n-1; i>=0; i--)
+    {
+        // Move current root to end
+        swap(arr[0], arr[i]);
+
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
     }
 }
