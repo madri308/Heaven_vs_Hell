@@ -6,22 +6,22 @@ BinarySearchTree::BinarySearchTree()
     root = nullptr;
 }
 
-void BinarySearchTree::insert(Human *d)
+void BinarySearchTree::insert(Node *d)
 {
     root = insert(d,root);
 }
 
-Node* BinarySearchTree::insert(Human *human, Node *node)
+Node* BinarySearchTree::insert(Node *human, Node *node)
 {
     if (node == nullptr)
     {
-        return new Node(human);
+        return human;
     }
-    else if (node->data->id < human->id)
+    else if (node->data->id < human->data->id)
     {
         node->right = insert(human,node->right);
     }
-    else if(node->data->id >= human->id)
+    else if(node->data->id >= human->data->id)
     {
         node->left = insert(human, node->left);
     }

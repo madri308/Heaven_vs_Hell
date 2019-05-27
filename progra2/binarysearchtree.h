@@ -7,8 +7,8 @@ struct BinarySearchTree
     BinarySearchTree();
     Node *root;
 
-    void insert(Human *d);
-    Node * insert(Human *d,Node *node);
+    void insert(Node *d);
+    Node * insert(Node *d,Node *node);
     Node *search(int id, Node* root);
     int nodeCounter(Node *node);
     int getHeight(Node *node);
