@@ -1,5 +1,5 @@
 #include "avltree.h"
-
+#include "node.h"
 AVLTree::AVLTree()
 {
     root = nullptr;
@@ -121,4 +121,9 @@ Node * AVLTree::insert(Node *root, Human *data)
     }
 
     return root;
+}
+
+Human AVLTree::getRandom()
+{
+
 }

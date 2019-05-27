@@ -14,7 +14,7 @@ struct BinarySearchTree
     int getHeight(Node *node);
     int getMax(int a, int b);
     Node *greater(Node* tree);
-    Node *removeElement(Human *human);
-    Node *removeElement(Human *human, Node* tree);
+    Node *removeElement(int id);
+    Node *removeElement(int id, Node* tree);
 };
 

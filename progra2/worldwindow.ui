@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>219</width>
+    <width>460</width>
     <height>368</height>
    </rect>
   </property>
@@ -143,10 +143,49 @@
      <rect>
       <x>10</x>
       <y>210</y>
-      <width>193</width>
+      <width>431</width>
       <height>151</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="verticalWidget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>0</y>
+      <width>211</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Consultas del infierno</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="showDemon">
+       <property name="text">
+        <string>Demonios</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Humanos más pecadores</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

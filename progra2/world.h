@@ -20,7 +20,6 @@ struct World
     string religions[10];
     string countries[100][3];
     string jobs[50];
-    Hell *hell;
 
     DoubleList peolpe;
 

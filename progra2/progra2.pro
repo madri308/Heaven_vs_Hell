@@ -37,7 +37,8 @@ SOURCES += \
     demon.cpp \
     hell.cpp \
     heaven.cpp \
-    binarysearchtree.cpp
+    binarysearchtree.cpp \
+    demonwindow.cpp
 
 HEADERS += \
     avltree.h \
@@ -51,10 +52,12 @@ HEADERS += \
     demon.h \
     hell.h \
     heaven.h \
-    binarysearchtree.h
+    binarysearchtree.h \
+    demonwindow.h
 
 FORMS += \
-    worldwindow.ui
+    worldwindow.ui \
+    demonwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

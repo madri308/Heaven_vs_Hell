@@ -1,15 +1,14 @@
 #include "demon.h"
 
-Demon::Demon(string name, string sin)
+Demon::Demon(QString name, QString sin, QString desc, QString image)
 {
     this->name = name;
     this->sin = sin;
+    this->desc = desc;
+    this->image = image;
 }
 
-Demon::Demon()
-{
-
-}
+Demon::Demon(){}
 
 void Demon::condemn(DoubleList people)
 {

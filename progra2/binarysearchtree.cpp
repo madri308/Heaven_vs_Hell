@@ -31,7 +31,7 @@ Node* BinarySearchTree::insert(Human *human, Node *node)
 
 Node *BinarySearchTree::search(int id, Node *root)
 {
-    // cuando el nodo es nulo, quiere decir que all� debe
+    // cuando el nodo es nulo, quiere decir que alli debe
          // ubicar el valor, en un nuevo nodo
          if (root == nullptr)
          {
@@ -150,25 +150,25 @@ Node *BinarySearchTree::greater(Node *tree)
     }
 }
 
-Node *BinarySearchTree::removeElement(Human *human)
+Node *BinarySearchTree::removeElement(int id)
 {
-    root = removeElement(human, root);
+    root = removeElement(id, root);
     return root;
 }
 
-Node *BinarySearchTree::removeElement(Human *human, Node *tree)
+Node *BinarySearchTree::removeElement(int id, Node *tree)
 {
     if (tree == nullptr)
     {
         return nullptr;
     }
-    else if (human->id < tree->data->id)
+    else if (id < tree->data->id)
     {
-        tree->prev = removeElement(human, tree->prev);
+        tree->prev = removeElement(id, tree->prev);
     }
-    else if (human->id > tree->data->id)
+    else if (id > tree->data->id)
     {
-        tree->next = removeElement(human, tree->next);
+        tree->next = removeElement(id, tree->next);
     }
     else if (tree->next == nullptr && tree->prev == nullptr)
     {
@@ -184,7 +184,7 @@ Node *BinarySearchTree::removeElement(Human *human, Node *tree)
     }
     else {
         Node *max = greater(tree->prev); //mayor de los menores
-        tree->prev = removeElement(max->data, tree->prev);
+        tree->prev = removeElement(max->data->id, tree->prev);
         tree->data = max->data;
     }
     return tree;

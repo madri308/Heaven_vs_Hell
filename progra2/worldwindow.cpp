@@ -4,6 +4,8 @@
 #include "sstream"
 #include "QMessageBox"
 #include "QListWidget"
+#include "demonwindow.h"
+#include "avltree.h"
 
 using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
@@ -19,6 +21,7 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->top5sins, SIGNAL (released()),this, SLOT (top5sins()));
     connect(ui->top10GD, SIGNAL (released()),this, SLOT (top10GD()));
     connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
+    connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
 }
 
 WorldWindow::~WorldWindow()
@@ -26,8 +29,8 @@ WorldWindow::~WorldWindow()
     delete ui;
 }
 void WorldWindow::showHumans(){
-    ui->humansCount->setText("Personas actualmente: "+QString::number(world.peolpe.quantity));
-    Node *temp = world.peolpe.first;
+    ui->humansCount->setText("Personas actualmente: "+QString::number(world->peolpe.quantity));
+    Node *temp = world->peolpe.first;
     QListWidget *list = ui->list;
     list->clear();
     while(temp){
@@ -61,7 +64,7 @@ void WorldWindow::showHumans(){
     }
 }
 void WorldWindow::generateSins(){
-    Node *temp = world.peolpe.first;   //EMPIEZA POR LA PRIMERA PERSONA
+    Node *temp = world->peolpe.first;   //EMPIEZA POR LA PRIMERA PERSONA
     srand(time(NULL));
     while(temp){    //MIENTRAS EXISTAN MAS PERSONAS.
         //GENERA LOS NUMEROS RANDOM PARA LOS PECADOS EN UNA LISTA
@@ -70,7 +73,7 @@ void WorldWindow::generateSins(){
         for(int t = 0; t<7 ; t++){  //CICLO PARA ESTABLECER PECADOS.
             //LE ASIGNA A CADA PECADO DE LA PERSONA SU PORCENTAJE RANDOM
             temp->data->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+percetages[t]);
-            totalSins = totalSins + percetages[t];
+            //totalSins = totalSins + percetages[t];
             for(Human child:temp->data->childrens){ //RECORRE LA LISTA DE HIJOS
                 //Y A SUS PECADOS LE SUMA EL 50% DEL PAPA.
                 child.sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*50/100));
@@ -82,13 +85,13 @@ void WorldWindow::generateSins(){
                 }
             }
         }
+        temp->data->family->sins = totalSins;
         for(int country = 0; country < 100; country++){
-            if(temp->data->country == this->world.countries[country][0]){
+            if(temp->data->country == this->world->countries[country][0]){
                 int number;
-                std::istringstream iss (this->world.countries[country][1]);
+                std::istringstream iss (this->world->countries[country][1]);
                 iss >> number;
-                this->world.countries[country][1] = to_string(number+totalSins);
-                cout<<this->world.countries[country][1]<<endl;
+                this->world->countries[country][1] = to_string(number+totalSins);
             }
         }
         temp = temp->next;  //PASA A LA SIGUIENTE PERSONA
@@ -96,27 +99,28 @@ void WorldWindow::generateSins(){
     msgBox.setWindowTitle("Satanas haciendo de las suyas.");
     QPixmap pixmap = QPixmap(":/new/prefix1/demon.ico");
     msgBox.setWindowIcon(pixmap);
-    msgBox.setText(QString::number(world.peolpe.quantity)+" personas han pecado de manera exitosa.");
+    msgBox.setText(QString::number(world->peolpe.quantity)+" personas han pecado de manera exitosa.");
     msgBox.exec();
     showHumans();
 }
 void WorldWindow::generateGoodDeeds(){
-    Node *temp = world.peolpe.first;
+    Node *temp = world->peolpe.first;
     srand(time(NULL));
     while(temp){
         int totalGD = 0;
         int percetages[7] = {rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100};
         for(int t = 0; t<7 ; t++){
             temp->data->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+percetages[t]);
+
             totalGD = totalGD + percetages[t];
         }
+
         for(int country = 0; country < 100; country++){
-            if(temp->data->country == this->world.countries[country][0]){
+            if(temp->data->country == this->world->countries[country][0]){
                 int number;
-                std::istringstream iss (this->world.countries[country][2]);
+                std::istringstream iss (this->world->countries[country][2]);
                 iss >> number;
-                this->world.countries[country][2] = to_string(number+totalGD);
-                cout<<this->world.countries[country][2]<<endl;
+                this->world->countries[country][2] = to_string(number+totalGD);
             }
         }
         temp = temp->next;
@@ -124,7 +128,7 @@ void WorldWindow::generateGoodDeeds(){
     msgBox.setWindowTitle("Gracias a Dios.");
     QPixmap pixmap = QPixmap(":/new/prefix1/please.ico");
     msgBox.setWindowIcon(pixmap);
-    msgBox.setText(QString::number(world.peolpe.quantity)+" personas hicieron su buena accion del dia.");
+    msgBox.setText(QString::number(world->peolpe.quantity)+" personas hicieron su buena accion del dia.");
     msgBox.exec();
     showHumans();
 
@@ -133,20 +137,20 @@ void WorldWindow::sortCountries(int p){
     for(int c = 0 ; c < 100 ; c++){
         for(int s = c+1; s<100;s++){
             int cant1,cant2;
-            std::istringstream iss1 (world.countries[c][p]);
-            std::istringstream iss2 (world.countries[s][p]);
+            std::istringstream iss1 (world->countries[c][p]);
+            std::istringstream iss2 (world->countries[s][p]);
             iss1 >> cant1;
             iss2 >> cant2;
             if(cant1<cant2){
-                string temp0 = world.countries[c][2];
-                string temp1 = world.countries[c][1];
-                string temp2 = world.countries[c][0];
-                world.countries[c][2] = world.countries[s][2];
-                world.countries[c][1] = world.countries[s][1];
-                world.countries[c][0] = world.countries[s][0];
-                world.countries[s][2] = temp0;
-                world.countries[s][1] = temp1;
-                world.countries[s][0] = temp2;
+                string temp0 = world->countries[c][2];
+                string temp1 = world->countries[c][1];
+                string temp2 = world->countries[c][0];
+                world->countries[c][2] = world->countries[s][2];
+                world->countries[c][1] = world->countries[s][1];
+                world->countries[c][0] = world->countries[s][0];
+                world->countries[s][2] = temp0;
+                world->countries[s][1] = temp1;
+                world->countries[s][0] = temp2;
             }
         }
     }
@@ -159,13 +163,13 @@ void WorldWindow::top5sins()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world.countries[c+5][1] == "0"){
+        if(world->countries[c+5][1] == "0"){
             int i = 4;
             while(i>=0){
-                if(world.countries[c][1] == "0"){
+                if(world->countries[c][1] == "0"){
                     continue;
                 }
-                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c+i][0]+" "+world.countries[c+i][1]+"\n"));
+                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c+i][0]+" "+world->countries[c+i][1]+"\n"));
                 i--;
             }
             msgBox.exec();
@@ -182,10 +186,10 @@ void WorldWindow::top10GD()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 10");
     for(int c = 0 ; c < 10 ; c++ ){
-        if(world.countries[c][2] == "0"){
+        if(world->countries[c][2] == "0"){
             continue;
         }
-        msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c][0]+" "+world.countries[c][2]+"\n"));
+        msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c][0]+" "+world->countries[c][2]+"\n"));
     }
     msgBox.exec();
 }
@@ -198,19 +202,25 @@ void WorldWindow::top5GD()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world.countries[c+5][2] == "0"){
+        if(world->countries[c+5][2] == "0"){
             int i = 4;
             while(i>=0){
-                if(world.countries[c][2] == "0"){
+                if(world->countries[c][2] == "0"){
                     continue;
                 }
-                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c+i][0]+" "+world.countries[c+i][2]+"\n"));
+                msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c+i][0]+" "+world->countries[c+i][2]+"\n"));
                 i--;
             }
             msgBox.exec();
             break;
         }
     }
+}
+
+void WorldWindow::showDemon()
+{
+    DemonWindow *w = new DemonWindow(nullptr,this->hell->demons);
+    w->show();
 }
 void WorldWindow::top10sins()
 {
@@ -220,18 +230,18 @@ void WorldWindow::top10sins()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 10");
     for(int c = 0 ; c < 10 ; c++ ){
-        if(world.countries[c][1] == "0"){
+        if(world->countries[c][1] == "0"){
             continue;
         }
-        msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world.countries[c][0]+" "+world.countries[c][1]+"\n"));
+        msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c][0]+" "+world->countries[c][1]+"\n"));
     }
     msgBox.exec();
 }
 
 void WorldWindow::generatePeople(){
     QString quant = ui->people->toPlainText();
-    world.generatePeople(quant.toInt());
-    msgBox.setText("Se han agregado "+quant+" personas\nActualmente hay "+QString::number(world.peolpe.quantity));
+    world->generatePeople(quant.toInt());
+    msgBox.setText("Se han agregado "+quant+" personas\nActualmente hay "+QString::number(world->peolpe.quantity));
     msgBox.setWindowTitle("Haciendo bebes!");
     QPixmap pixmap = QPixmap(":/new/prefix1/baby.ico");
     msgBox.setWindowIcon(pixmap);

@@ -2,7 +2,6 @@
 #define NODE_H
 #include "human.h"
 
-
 struct Node
 {
 public:

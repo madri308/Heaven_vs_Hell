@@ -15,6 +15,8 @@ public:
     Node *leftRotate(Node *root);
     int getBalance(Node *node);
     Node *insert(Node *root, Human *data);
+    Human getRandom();
+    int sins;
 };
 
 #endif // AVLTREE_H

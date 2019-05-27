@@ -15,7 +15,9 @@ class WorldWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    World world;
+    World *world = new World();
+    Hell *hell = new Hell();
+
     QMessageBox msgBox;
     explicit WorldWindow(QWidget *parent = nullptr);
     ~WorldWindow();
@@ -31,6 +33,7 @@ private slots:
     void top5sins();
     void top10GD();
     void top5GD();
+    void showDemon();
 private:
 };
 

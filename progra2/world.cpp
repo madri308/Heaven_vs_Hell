@@ -7,9 +7,9 @@
 #include <ctime>
 #include <chrono>
 #include "sstream"
-#include "binarysearchtree.h"
 #include "hell.h"
 #include "node.h"
+#include "avltree.h"
 
 using namespace std;
 
@@ -17,7 +17,6 @@ World::World()
 {
     //Agarra las listas y le mete los datos del json.
     JsonParser *m = new JsonParser(this->names,this->lastnames,this->jobs,this->religions,this->countries);
-    this->hell = new Hell();
     this->peopleTree = new BinarySearchTree();
 }
 
@@ -39,23 +38,25 @@ void World::generatePeople(int peopleQuan){
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         size_t childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
+        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
         Node *humanNode = new Node(person);
-        this->peolpe.add(humanNode);           //Mete el humano a la lista
-        this->peopleTree->insert(person);
-        /*//Se fija si existe un arbol de la familia.
+        this->peolpe.add(humanNode);           //Mete el humano a la lista.
+        this->peopleTree->insert(person);      //Mete el humano al arbol.
+        //Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.
-            peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(person);
+            peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->root,person);
             //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
             person->family = peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family;
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
             for(size_t child = 0 ; child < person->childrens.size() ; child++){
-                //person[child] = person->family->getRandom();
+                person[child] = person->family->getRandom();
+                //Validar que esa persona random no sea le mismo o el papa o la mama.
             }
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
-            BinarySearchTree *fam = new BinarySearchTree();   //Entonces crea el arbol
+            AVLTree *fam = new AVLTree();   //Entonces crea el arbol
             person->family = fam;           //Y lo setea como atributo.
-        }*/
+        }
     }
 }
 

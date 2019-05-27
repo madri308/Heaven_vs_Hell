@@ -9,12 +9,14 @@ using namespace std;
 struct Demon
 {
 public:
-    Demon(string name,string sin);
+    Demon(QString name,QString sin,QString desc,QString image);
     Demon();
     void condemn(DoubleList people);
 
-    string name;
-    string sin;
+    QString name;
+    QString sin;
+    QString image;
+    QString desc;
 
 };
 
