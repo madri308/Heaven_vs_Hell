@@ -70,6 +70,7 @@ int AVLTree::getBalance(Node *node)
     }
 }
 
+
 Node * AVLTree::insert(Node *root, Human *data)
 {
     //1. Se hace la insercion normal de un BST
@@ -122,7 +123,10 @@ Node * AVLTree::insert(Node *root, Human *data)
 
     return root;
 }
-
+void AVLTree::insert(Human *d)
+{
+    root = insert(root,d);
+}
 Human AVLTree::getRandom()
 {
 

@@ -14,6 +14,7 @@ public:
     Node *rightRotate(Node *root);
     Node *leftRotate(Node *root);
     int getBalance(Node *node);
+    void insert(Human *d);
     Node *insert(Node *root, Human *data);
     Human getRandom();
     int sins;

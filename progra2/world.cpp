@@ -45,7 +45,7 @@ void World::generatePeople(int peopleQuan){
         //Se fija si existe un arbol de la familia.
         if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
             //AGREGA A LA PERSONA AL ARBOL.
-            peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->root,person);
+            peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(person);
             //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
             person->family = peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family;
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
