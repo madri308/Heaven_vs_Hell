@@ -122,7 +122,6 @@ Node * AVLTree::insert(Node *root, Human *data)
 }
 void AVLTree::insert(Human *d)
 {
-    this->count++;
     root = insert(root,d);
 }
 int AVLTree::nodeCounter(Node *root)

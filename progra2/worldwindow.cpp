@@ -6,7 +6,7 @@
 #include "QListWidget"
 #include "demonwindow.h"
 #include "avltree.h"
-#include "QShortcut"
+
 using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,8 +23,6 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
 
-    QShortcut *shortcut2 = new QShortcut(QKeySequence(Qt::Key_Space), this);
-    connect(shortcut2, SIGNAL(activated()), this, SLOT(generatePeople()));
 
 }
 
@@ -49,7 +47,8 @@ void WorldWindow::showHumans(){
         list->addItem("Pais: "+QString::fromStdString(temp->data->country));
         list->addItem("Religion: "+QString::fromStdString(temp->data->religion));
         list->addItem("Trabajo: "+QString::fromStdString(temp->data->job));
-        //list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
+        list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
+        cout<<temp->data->family->count<<endl;
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){

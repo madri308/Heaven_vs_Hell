@@ -28,40 +28,32 @@ void World::generatePeople(int peopleQuan){
         while(this->peolpe.exist(id)){      //Si el id existe
             id = rand() % 9999999;          //genera otro hasta qu eno exista
         }
-
         //Saca fecha y hora de nacimiento
         time_t now = time(0);
         char *dt = ctime(&now);
-
         //Saca los datos normales
         int namePos = rand() % 1000;        //NOMBRE RANDOM
         int religionPos = rand() % 10;      //RELGION RANDOM
         int countriesPos = rand() % 100;    //PAIS RANDOM
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         int childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
-
         //CREA EL HUMANO CON SUS DATOS
         Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
         Node *humanNode = new Node(person);
 
-        //BUSCA SI EXISTE ALGUIEN CON EL MISMO APELLIDO Y FAMILIA(UN PARIENTE)
         Node *relative = peolpe.getBySurnameAndCountrie(person->surname,person->country);
 
-        this->peolpe.add(humanNode);           //Mete el humano a la lista de humanos.
-        this->peopleTree->insert(humanNode);      //Mete el humano al arbol de humanos.
-
+        this->peolpe.add(humanNode);           //Mete el humano a la lista.
+        this->peopleTree->insert(person);      //Mete el humano al arbol.
         //Se fija si existe un arbol de la familia.
         if(relative != nullptr){//SI EXISTE
-
-            relative->data->family->insert(person);     //AGREGA LA PERSONA AL ARBOL FAMILIAR.
-
-            person->family = relative->data->family;   //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
-
-            int t = person->childCount;                     //t es el tope, la cantidad de hijos que necesita
-            if(person->family->count < person->childCount){ //pero si hay muy pocas personas en el arbol
-                t = person->family->count;                  //entoces establece y como la cantidad de personas ne el arbol
-            }
+            //AGREGA A LA PERSONA AL ARBOL.
+            relative->data->family->count++;
+            relative->data->family->insert(person);
+            //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
+            person->family = relative->data->family;
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
+<<<<<<< HEAD
             for(int child = 0; child < t ; child++){
                 Human *randomChild = person->family->getRandom(); //Saca una persona random del arbol
                 if(person->parent == randomChild){                //Si esa persona random es el papa
@@ -69,9 +61,18 @@ void World::generatePeople(int peopleQuan){
                 }                                                 //Si no es el papa
                 person[child] = *randomChild;                     //entonces lo setea como hijo
                 randomChild->parent = person;                     //y al hijo le setea su papa
+=======
+            for(int child = 0 ; child < person->childCount ; child++){
+                Human *randomChild = person->family->getRandom();
+                if(person->parent == randomChild){
+                    continue;
+                }
+                person[child] = *randomChild;
+>>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
             }
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
             AVLTree *fam = new AVLTree(person->surname+"-"+person->country);   //Entonces crea el arbol
+            fam->count++;
             fam->insert(person);
             person->family = fam;           //Y lo setea como atributo.
         }
