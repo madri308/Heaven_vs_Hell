@@ -49,18 +49,18 @@ void World::generatePeople(int peopleQuan){
 
         //Se fija si existe un arbol de la familia.
         if(relative != nullptr){//SI EXISTE
-            relative->data->family->insert(person);     //AGREGA LA PERSONA AL ARBOL FAMILIAR.
+           relative->data->family->insert(person);     //AGREGA LA PERSONA AL ARBOL FAMILIAR.
 
-           person->family = relative->data->family;   //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
+           person->family = relative->data->family;         //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
 
-           int t = person->childCount;                     //t es el tope, la cantidad de hijos que necesita
+           /*int t = person->childCount;                     //t es el tope, la cantidad de hijos que necesita
            if(person->family->count < person->childCount){ //pero si hay muy pocas personas en el arbol
                t = person->family->count;                  //entoces establece y como la cantidad de personas ne el arbol
            }
            //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
-           /*for(int child = 0; child < t ; child++){
+          for(int child = 0; child < t ; child++){
                Human *randomChild = person->family->getRandom(); //Saca una persona random del arbol
-               if(person->parent == randomChild){                //Si esa persona random es el papa
+               if(randomChild == nullptr || person->parent == randomChild){                //Si esa persona random es el papa
                    continue;                                     //entonces lo ignora y sigue el ciclo
                }                                                 //Si no es el papa
                person[child] = *randomChild;                     //entonces lo setea como hijo

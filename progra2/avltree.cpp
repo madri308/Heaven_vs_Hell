@@ -1,5 +1,6 @@
 #include "avltree.h"
 #include "node.h"
+
 AVLTree::AVLTree(string name)
 {
     this->name = name;
@@ -21,7 +22,16 @@ int AVLTree::getHeight(Node *node)
         return node->height;
     }
 }
-
+Node *AVLTree::newNode(Human *human)
+{
+    Node* node = new Node(human);
+    node->data = human;
+    node->left = nullptr;
+    node->right = nullptr;
+    node->height = 1; // new node is initially
+                      // added at leaf
+    return(node);
+}
 
 Node *AVLTree::rightRotate(Node *root)
 {
@@ -33,8 +43,10 @@ Node *AVLTree::rightRotate(Node *root)
     root->left = T2;
 
     //Actualiza las alturas
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
+    root->height = max(getHeight(root->left),
+                       getHeight(root->right)) + 1;
+    x->height = max(getHeight(x->left),
+                    getHeight(x->right)) + 1;
 
     //Devuelve la nueva raiz
     return x;
@@ -50,8 +62,10 @@ Node *AVLTree::leftRotate(Node *root)
     root->right = T2;
 
     //Actualizar alturas
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    y->height =max(getHeight(y->left), getHeight(root->right));
+    root->height = max(getHeight(root->left),
+                       getHeight(root->right)) + 1;
+    y->height =max(getHeight(y->left),
+                   getHeight(y->right)) + 1;
 
     //Devuelve la nueva raiz
     return y;
@@ -73,7 +87,8 @@ Node * AVLTree::insert(Node *root, Human *data)
     //1. Se hace la insercion normal de un BST
     if (root == nullptr)
     {
-        return new Node(data);
+        Node *n = new Node(data);
+        return n;
     }
     else if (data->id < root->data->id)
     {
@@ -85,7 +100,8 @@ Node * AVLTree::insert(Node *root, Human *data)
     }
 
     //2. Actualizar la altura del nodo ancestro
-    root->height = 1 + getHeight(root->left) - getHeight(root->right);
+    root->height = 1 + max(getHeight(root->left) ,
+                           getHeight(root->right));
 
     //Chequear si el nodo se volvio inbalanceado
     int balance = getBalance(root);
@@ -95,13 +111,13 @@ Node * AVLTree::insert(Node *root, Human *data)
     //Left Left
     if (balance > 1 && data->id < root->left->data->id)
     {
-        return leftRotate(root);
+        return rightRotate(root);
     }
 
     //Right Right
     if (balance < -1 && data->id > root->right->data->id)
     {
-        return rightRotate(root);
+        return leftRotate(root);
     }
 
     //Left Right
@@ -129,9 +145,9 @@ Human* AVLTree::getRandom()
 {
     Node *toReturn = this->root;
     if(toReturn == nullptr){
-        return toReturn->data;
+        return nullptr;
     }
-    for(int n = 0; n<this->count ; n++){
+    for(int n = 0; n<this->count/2 ; n++){
         if(toReturn->left == nullptr && toReturn->right == nullptr){
             return toReturn->data;
         }

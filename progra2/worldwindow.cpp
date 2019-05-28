@@ -6,6 +6,8 @@
 #include "QListWidget"
 #include "demonwindow.h"
 #include "avltree.h"
+#include "QMovie"
+#include "QTimer"
 
 using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
@@ -31,6 +33,7 @@ WorldWindow::~WorldWindow()
     delete ui;
 }
 void WorldWindow::showHumans(){
+
     ui->humansCount->setText("Personas actualmente: "+QString::number(world->peolpe.quantity));
     Node *temp = world->peolpe.first;
     QListWidget *list = ui->list;
@@ -48,7 +51,6 @@ void WorldWindow::showHumans(){
         list->addItem("Religion: "+QString::fromStdString(temp->data->religion));
         list->addItem("Trabajo: "+QString::fromStdString(temp->data->job));
         list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
-        cout<<temp->data->family->count<<endl;
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){
@@ -93,7 +95,7 @@ void WorldWindow::generateSins(){
                 }
             }
         }
-        temp->data->family->sins = totalSins;
+        temp->data->family->sins = temp->data->family->sins+totalSins;
         for(int country = 0; country < 100; country++){
             if(temp->data->country == this->world->countries[country][0]){
                 int number;
@@ -134,6 +136,7 @@ void WorldWindow::generateGoodDeeds(){
                     }
                 }
             }
+            temp->data->family->GD = temp->data->family->GD+totalGD;
         }
 
         for(int country = 0; country < 100; country++){
@@ -184,7 +187,7 @@ void WorldWindow::top5sins()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world->countries[c+5][1] == "0"){
+        if(world->countries[c+5][1] == "0" || c == 94){
             int i = 4;
             while(i>=0){
                 if(world->countries[i][1] == "0"){
@@ -224,7 +227,7 @@ void WorldWindow::top5GD()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world->countries[c+5][2] == "0"){
+        if(world->countries[c+5][2] == "0" || c == 94){
             int i = 4;
             while(i>=0){
                 if(world->countries[i][2] == "0"){
