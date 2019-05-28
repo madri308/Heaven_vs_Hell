@@ -62,14 +62,14 @@ void World::generatePeople(int peopleQuan){
                 t = person->family->count;                  //entoces establece y como la cantidad de personas ne el arbol
             }
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
-            for(int child = 0; child < t ; child++){
+            /*for(int child = 0; child < t ; child++){
                 Human *randomChild = person->family->getRandom(); //Saca una persona random del arbol
                 if(person->parent == randomChild){                //Si esa persona random es el papa
                     continue;                                     //entonces lo ignora y sigue el ciclo
                 }                                                 //Si no es el papa
                 person[child] = *randomChild;                     //entonces lo setea como hijo
                 randomChild->parent = person;                     //y al hijo le setea su papa
-            }
+            }*/
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
             AVLTree *fam = new AVLTree(person->surname+"-"+person->country);   //Entonces crea el arbol
             fam->insert(person);
