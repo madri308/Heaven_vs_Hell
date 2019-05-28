@@ -1,7 +1,6 @@
 #include "demonwindow.h"
 #include "ui_demonwindow.h"
 #include "demon.h"
-#include "QShortcut"
 
 DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
     QMainWindow(parent),
@@ -15,6 +14,7 @@ DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
 
     connect(ui->next, SIGNAL (released()),this, SLOT (next()));
     connect(ui->prev, SIGNAL (released()),this, SLOT (prev()));
+<<<<<<< HEAD
 
     QShortcut *shortcut1 = new QShortcut(QKeySequence(Qt::Key_Left), this);
     connect(shortcut1, SIGNAL(activated()), this, SLOT(next()));
@@ -22,6 +22,8 @@ DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
     QShortcut *shortcut2 = new QShortcut(QKeySequence(Qt::Key_Right), this);
     connect(shortcut2, SIGNAL(activated()), this, SLOT(prev()));
 
+=======
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
     showInfo();
 }
 

@@ -1,8 +1,7 @@
 #include "avltree.h"
 #include "node.h"
-AVLTree::AVLTree(string name)
+AVLTree::AVLTree()
 {
-    this->name = name;
     root = nullptr;
 }
 
@@ -22,19 +21,23 @@ int AVLTree::getHeight(Node *node)
     }
 }
 
+Node *AVLTree::newNode(Human *human)
+{
+
+}
 
 Node *AVLTree::rightRotate(Node *root)
 {
-    Node *x = root->left;
-    Node *T2 = x->right;
+    Node *x = root->prev;
+    Node *T2 = x->next;
 
     //Hace la rotacion
-    x->right = root;
-    root->left = T2;
+    x->next = root;
+    root->prev = T2;
 
     //Actualiza las alturas
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
+    root->height = max(getHeight(root->prev), getHeight(root->next)) + 1;
+    x->height = max(getHeight(x->prev), getHeight(x->next)) + 1;
 
     //Devuelve la nueva raiz
     return x;
@@ -42,16 +45,16 @@ Node *AVLTree::rightRotate(Node *root)
 
 Node *AVLTree::leftRotate(Node *root)
 {
-    Node *y = root->right;
-    Node *T2 = y->left;
+    Node *y = root->next;
+    Node *T2 = y->prev;
 
     //Hace la rotacion
-    y->left = root;
-    root->right = T2;
+    y->prev = root;
+    root->next = T2;
 
     //Actualizar alturas
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-    y->height =max(getHeight(y->left), getHeight(root->right));
+    root->height = max(getHeight(root->prev), getHeight(root->next)) + 1;
+    y->height =max(getHeight(y->prev), getHeight(root->next));
 
     //Devuelve la nueva raiz
     return y;
@@ -63,7 +66,7 @@ int AVLTree::getBalance(Node *node)
         return 0;
     }
     else {
-        return getHeight(node->left) - getHeight(node->right);
+        return getHeight(node->prev) - getHeight(node->next);
     }
 }
 
@@ -77,15 +80,15 @@ Node * AVLTree::insert(Node *root, Human *data)
     }
     else if (data->id < root->data->id)
     {
-        root->left = insert(root->left,data);
+        root->prev = insert(root->prev,data);
     }
     else if(data->id >= root->data->id)
     {
-        root->right = insert(root->right, data);
+        root->next = insert(root->next, data);
     }
 
     //2. Actualizar la altura del nodo ancestro
-    root->height = 1 + getHeight(root->left) - getHeight(root->right);
+    root->height = 1 + getHeight(root->prev) - getHeight(root->next);
 
     //Chequear si el nodo se volvio inbalanceado
     int balance = getBalance(root);
@@ -93,28 +96,28 @@ Node * AVLTree::insert(Node *root, Human *data)
     //Si esta inbalanceado hay 4 casos
 
     //Left Left
-    if (balance > 1 && data->id < root->left->data->id)
+    if (balance > 1 && data->id < root->prev->data->id)
     {
         return leftRotate(root);
     }
 
     //Right Right
-    if (balance < -1 && data->id > root->right->data->id)
+    if (balance < -1 && data->id > root->next->data->id)
     {
         return rightRotate(root);
     }
 
     //Left Right
-    if (balance > 1 && data->id > root->left->data->id)
+    if (balance > 1 && data->id > root->prev->data->id)
     {
-        root->left = leftRotate(root->left);
+        root->prev = leftRotate(root->prev);
         return rightRotate(root);
     }
 
     //Right Left
-    if (balance < -1 && data->id < root->right->data->id)
+    if (balance < -1 && data->id < root->next->data->id)
     {
-        root->right = rightRotate(root->right);
+        root->next = rightRotate(root->next);
         return leftRotate(root);
     }
 
@@ -125,6 +128,11 @@ void AVLTree::insert(Human *d)
     this->count++;
     root = insert(root,d);
 }
+Human *AVLTree::getRandom()
+{
+    for(int i = 0; )
+}
+
 int AVLTree::nodeCounter(Node *root)
 {
     if (root == nullptr)
@@ -133,30 +141,5 @@ int AVLTree::nodeCounter(Node *root)
     }
     else {
         return 1+nodeCounter(root->next)+nodeCounter(root->prev);
-
-Human *AVLTree::getRandom()
-{
-    Node *toReturn = this->root;
-    if(toReturn == nullptr){
-        return toReturn->data;
-    }
-    for(int n = 0; n<this->count ; n++){
-        if(toReturn->left == nullptr && toReturn->right == nullptr){
-            return toReturn->data;
-        }
-        int dir = rand() % 2;
-        if(dir == 1){
-            if(toReturn->right == nullptr){
-                toReturn = toReturn->left;
-            }else{
-                toReturn = toReturn->right;
-            }
-        }else{
-            if(toReturn->left == nullptr){
-                toReturn = toReturn->right;
-            }else{
-                toReturn = toReturn->left;
-            }
-        }
     }
 }
