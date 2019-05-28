@@ -23,8 +23,11 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 =======
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 }
@@ -46,6 +49,7 @@ void WorldWindow::showHumans(){
         container->addWidget(l1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         list->addItem("Id: "+QString::number(temp->data->id));
         list->addItem("Nombre: "+QString::fromStdString(temp->data->name+" "+(temp->data->surname)));
         list->addItem("Pais: "+QString::fromStdString(temp->data->country));
@@ -54,16 +58,21 @@ void WorldWindow::showHumans(){
 <<<<<<< HEAD
         //list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
 =======
+=======
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
         list->addItem(QString::number(temp->data->id));
         list->addItem(QString::fromStdString(temp->data->name+" "+(temp->data->surname)));
         list->addItem(QString::fromStdString(temp->data->country));
         list->addItem(QString::fromStdString(temp->data->religion));
         list->addItem(QString::fromStdString(temp->data->job));
+<<<<<<< HEAD
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 =======
         list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
         cout<<temp->data->family->count<<endl;
 >>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
+=======
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){

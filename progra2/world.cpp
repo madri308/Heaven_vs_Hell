@@ -37,16 +37,18 @@ void World::generatePeople(int peopleQuan){
         int countriesPos = rand() % 100;    //PAIS RANDOM
         int jobPos = rand() % 50;           //TRABAJO RANDOM
 <<<<<<< HEAD
+<<<<<<< HEAD
         int childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
+=======
+        size_t childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
         //CREA EL HUMANO CON SUS DATOS
         Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
         Node *humanNode = new Node(person);
-
-        Node *relative = peolpe.getBySurnameAndCountrie(person->surname,person->country);
-
         this->peolpe.add(humanNode);           //Mete el humano a la lista.
         this->peopleTree->insert(person);      //Mete el humano al arbol.
         //Se fija si existe un arbol de la familia.
+<<<<<<< HEAD
         if(relative != nullptr){//SI EXISTE
 <<<<<<< HEAD
 
@@ -77,25 +79,32 @@ void World::generatePeople(int peopleQuan){
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
             }
 =======
+=======
+        if(peolpe.getBySurnameAndCountrie(person->surname,person->country) != nullptr){//SI EXISTE
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
             //AGREGA A LA PERSONA AL ARBOL.
-            relative->data->family->count++;
-            relative->data->family->insert(person);
+            peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family->insert(person);
             //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
+<<<<<<< HEAD
             person->family = relative->data->family;
 >>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
+=======
+            person->family = peolpe.getBySurnameAndCountrie(person->surname,person->country)->data->family;
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
-            for(int child = 0 ; child < person->childCount ; child++){
-                Human *randomChild = person->family->getRandom();
-                if(person->parent == randomChild){
-                    continue;
-                }
-                person[child] = *randomChild;
+            for(size_t child = 0 ; child < person->childrens.size() ; child++){
+                person[child] = person->family->getRandom();
+                //Validar que esa persona random no sea le mismo o el papa o la mama.
             }
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
+<<<<<<< HEAD
 <<<<<<< HEAD
             AVLTree *fam = new AVLTree(person->surname+"-"+person->country);   //Entonces crea el arbol
             fam->count++;
             fam->insert(person);
+=======
+            AVLTree *fam = new AVLTree();   //Entonces crea el arbol
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 =======
             AVLTree *fam = new AVLTree();   //Entonces crea el arbol
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
