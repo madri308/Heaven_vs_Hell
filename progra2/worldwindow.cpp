@@ -22,14 +22,8 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->top10GD, SIGNAL (released()),this, SLOT (top10GD()));
     connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
-=======
->>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
-=======
->>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 }
 
 WorldWindow::~WorldWindow()
@@ -48,31 +42,13 @@ void WorldWindow::showHumans(){
         l1->setText(QString::fromStdString(temp->data->name));
         container->addWidget(l1);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         list->addItem("Id: "+QString::number(temp->data->id));
         list->addItem("Nombre: "+QString::fromStdString(temp->data->name+" "+(temp->data->surname)));
         list->addItem("Pais: "+QString::fromStdString(temp->data->country));
         list->addItem("Religion: "+QString::fromStdString(temp->data->religion));
         list->addItem("Trabajo: "+QString::fromStdString(temp->data->job));
-<<<<<<< HEAD
-        //list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
-=======
-=======
->>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
-        list->addItem(QString::number(temp->data->id));
-        list->addItem(QString::fromStdString(temp->data->name+" "+(temp->data->surname)));
-        list->addItem(QString::fromStdString(temp->data->country));
-        list->addItem(QString::fromStdString(temp->data->religion));
-        list->addItem(QString::fromStdString(temp->data->job));
-<<<<<<< HEAD
->>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
-=======
         list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
         cout<<temp->data->family->count<<endl;
->>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
-=======
->>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){
@@ -101,15 +77,19 @@ void WorldWindow::generateSins(){
         for(int t = 0; t<7 ; t++){  //CICLO PARA ESTABLECER PECADOS.
             //LE ASIGNA A CADA PECADO DE LA PERSONA SU PORCENTAJE RANDOM
             temp->data->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+percetages[t]);
-            //totalSins = totalSins + percetages[t];
-            for(Human child:temp->data->childrens){ //RECORRE LA LISTA DE HIJOS
+            totalSins = totalSins + percetages[t];
+            for(int c = 0; c < temp->data->childCount ; c++){ //RECORRE LA LISTA DE HIJOS
                 //Y A SUS PECADOS LE SUMA EL 50% DEL PAPA.
-                child.sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*50/100));
-                //totalSins = totalSins + percetages[t]*50/100;
-                for(Human child:child.childrens){   //RECORRE LOS HIJOS DEL HIJO(NIETOS)
-                    //Y A SUS PECADOS LES SUMA EL 25% DEL PAPA DEL PAPA(EL ABUELO)
-                    totalSins = totalSins + percetages[t]*25/100;
-                    //child.sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*25/100));
+                if(temp->data->child[c]!= nullptr){
+                    temp->data->child[c]->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*50/100));
+                    totalSins = totalSins + percetages[t]*50/100;
+                    for(int cc = 0; cc < temp->data->child[c]->childCount ; cc++){   //RECORRE LOS HIJOS DEL HIJO(NIETOS)
+                        //Y A SUS PECADOS LES SUMA EL 25% DEL PAPA DEL PAPA(EL ABUELO)
+                        if(temp->data->child[c]->child[cc] != nullptr){
+                            temp->data->child[c]->child[cc]->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+(percetages[t]*25/100));
+                            totalSins = totalSins + percetages[t]*25/100;
+                        }
+                    }
                 }
             }
         }
@@ -139,8 +119,21 @@ void WorldWindow::generateGoodDeeds(){
         int percetages[7] = {rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100,rand() % 100};
         for(int t = 0; t<7 ; t++){
             temp->data->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+percetages[t]);
-
             totalGD = totalGD + percetages[t];
+            for(int c = 0; c < temp->data->childCount ; c++){ //RECORRE LA LISTA DE HIJOS
+                //Y A SUS BUENAS ACCIONES LE SUMA EL 50% DEL PAPA.
+                if(temp->data->child[c]!= nullptr){
+                    temp->data->child[c]->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+(percetages[t]*50/100));
+                    totalGD = totalGD + percetages[t]*50/100;
+                    for(int cc = 0; cc < temp->data->child[c]->childCount ; cc++){   //RECORRE LOS HIJOS DEL HIJO(NIETOS)
+                        //Y A SUS BUENAS ACCIONES LES SUMA EL 25% DEL PAPA DEL PAPA(EL ABUELO)
+                        if(temp->data->child[c]->child[cc] != nullptr){
+                            temp->data->child[c]->child[cc]->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+(percetages[t]*25/100));
+                            totalGD = totalGD + percetages[t]*25/100;
+                        }
+                    }
+                }
+            }
         }
 
         for(int country = 0; country < 100; country++){
@@ -194,7 +187,8 @@ void WorldWindow::top5sins()
         if(world->countries[c+5][1] == "0"){
             int i = 4;
             while(i>=0){
-                if(world->countries[c][1] == "0"){
+                if(world->countries[i][1] == "0"){
+                    i--;
                     continue;
                 }
                 msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c+i][0]+" "+world->countries[c+i][1]+"\n"));
@@ -233,7 +227,8 @@ void WorldWindow::top5GD()
         if(world->countries[c+5][2] == "0"){
             int i = 4;
             while(i>=0){
-                if(world->countries[c][2] == "0"){
+                if(world->countries[i][2] == "0"){
+                    i--;
                     continue;
                 }
                 msgBox.setText(QString::fromStdString(msgBox.text().toStdString()+" "+world->countries[c+i][0]+" "+world->countries[c+i][2]+"\n"));

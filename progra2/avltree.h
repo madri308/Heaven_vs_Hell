@@ -5,8 +5,10 @@
 struct AVLTree
 {
 public:
-    AVLTree();
+    AVLTree(string name);
     Node *root;
+
+    string name;
 
     int max(int a,int b);
     int getHeight(Node *node);
@@ -16,9 +18,9 @@ public:
     int getBalance(Node *node);
     void insert(Human *d);
     Node *insert(Node *root, Human *data);
-    Human *getRandom();
-    int nodeCounter(Node *root);
-    int sins;
+    Human* getRandom();
+    int sins = 0;
+    int count = 0;
 };
 
 #endif // AVLTREE_H
