@@ -57,9 +57,6 @@
          <property name="text">
           <string>Generar</string>
          </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
         </widget>
        </item>
        <item>
@@ -78,9 +75,6 @@
            <width>10</width>
            <height>10</height>
           </size>
-         </property>
-         <property name="backgroundVisible">
-          <bool>false</bool>
          </property>
          <property name="placeholderText">
           <string>Cantidad a crear..</string>

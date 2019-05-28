@@ -6,7 +6,7 @@
 #include "QListWidget"
 #include "demonwindow.h"
 #include "avltree.h"
-#include "QShortcut"
+
 using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,8 +24,6 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
 <<<<<<< HEAD
 
-    QShortcut *shortcut2 = new QShortcut(QKeySequence(Qt::Key_Space), this);
-    connect(shortcut2, SIGNAL(activated()), this, SLOT(generatePeople()));
 
 =======
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
@@ -53,6 +51,7 @@ void WorldWindow::showHumans(){
         list->addItem("Pais: "+QString::fromStdString(temp->data->country));
         list->addItem("Religion: "+QString::fromStdString(temp->data->religion));
         list->addItem("Trabajo: "+QString::fromStdString(temp->data->job));
+<<<<<<< HEAD
         //list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
 =======
         list->addItem(QString::number(temp->data->id));
@@ -61,6 +60,10 @@ void WorldWindow::showHumans(){
         list->addItem(QString::fromStdString(temp->data->religion));
         list->addItem(QString::fromStdString(temp->data->job));
 >>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
+=======
+        list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
+        cout<<temp->data->family->count<<endl;
+>>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){

@@ -16,10 +16,10 @@ DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
     connect(ui->prev, SIGNAL (released()),this, SLOT (prev()));
 <<<<<<< HEAD
 
-    QShortcut *shortcut1 = new QShortcut(QKeySequence(Qt::Key_Left), this);
+    QShortcut *shortcut1 = new QShortcut(QKeySequence("Right"), this);
     connect(shortcut1, SIGNAL(activated()), this, SLOT(next()));
 
-    QShortcut *shortcut2 = new QShortcut(QKeySequence(Qt::Key_Right), this);
+    QShortcut *shortcut2 = new QShortcut(QKeySequence("right"), this);
     connect(shortcut2, SIGNAL(activated()), this, SLOT(prev()));
 
 =======
