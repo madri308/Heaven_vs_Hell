@@ -68,7 +68,6 @@ void World::generatePeople(int peopleQuan){
            }*/
         }else{  //SI NO EXISTE ARBOL DE LA FAMILIA
             AVLTree *fam = new AVLTree(person->surname+"-"+person->country);   //Entonces crea el arbol
-            fam->count++;
             fam->insert(person);
             person->family = fam;           //Y lo setea como atributo.
         }
