@@ -51,6 +51,7 @@ void World::generatePeople(int peopleQuan){
             //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             for(int child = 0; child < t ; child++){
                 Human *randomChild = person->family->getRandom(); //Saca una persona random del arbol
                 if(person->parent == randomChild){                //Si esa persona random es el papa
@@ -66,6 +67,11 @@ void World::generatePeople(int peopleQuan){
                 }
                 person[child] = *randomChild;
 >>>>>>> parent of 0544e3d... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
+=======
+            for(size_t child = 0 ; child < person->childrens.size() ; child++){
+                person[child] = person->family->getRandom();
+                //Validar que esa persona random no sea le mismo o el papa o la mama.
+>>>>>>> parent of efaaa3a... Merge branch 'master' of https://github.com/madri308/Heaven_vs_Hell
 =======
             for(size_t child = 0 ; child < person->childrens.size() ; child++){
                 person[child] = person->family->getRandom();

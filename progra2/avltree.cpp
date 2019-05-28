@@ -129,7 +129,6 @@ void AVLTree::insert(Human *d)
 }
 Human *AVLTree::getRandom()
 {
-    for(int i = 0; )
 }
 
 int AVLTree::nodeCounter(Node *root)
