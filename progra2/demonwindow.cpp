@@ -1,6 +1,7 @@
 #include "demonwindow.h"
 #include "ui_demonwindow.h"
 #include "demon.h"
+#include "QShortcut"
 
 DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
     QMainWindow(parent),
@@ -14,6 +15,13 @@ DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
 
     connect(ui->next, SIGNAL (released()),this, SLOT (next()));
     connect(ui->prev, SIGNAL (released()),this, SLOT (prev()));
+
+    QShortcut *shortcut1 = new QShortcut(QKeySequence("Right"), this);
+    connect(shortcut1, SIGNAL(activated()), this, SLOT(next()));
+
+    QShortcut *shortcut2 = new QShortcut(QKeySequence("right"), this);
+    connect(shortcut2, SIGNAL(activated()), this, SLOT(prev()));
+
     showInfo();
 }
 
