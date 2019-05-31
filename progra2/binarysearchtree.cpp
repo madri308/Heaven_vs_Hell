@@ -29,6 +29,12 @@ Node* BinarySearchTree::insert(Node *human, Node *node)
     return node;
 }
 
+Node *BinarySearchTree::search(int id)
+{
+    Node *searched = search(id, root);
+    return searched;
+}
+
 Node *BinarySearchTree::search(int id, Node *root)
 {
     // cuando el nodo es nulo, quiere decir que alli debe

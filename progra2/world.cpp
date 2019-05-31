@@ -34,12 +34,13 @@ void World::generatePeople(int peopleQuan){
         char *dt = ctime(&now);
         //Saca los datos normales
         int namePos = rand() % 1000;        //NOMBRE RANDOM
+        int LastNamePos = rand() % 1000;    //APELLIDO RANDOM
         int religionPos = rand() % 10;      //RELGION RANDOM
         int countriesPos = rand() % 100;    //PAIS RANDOM
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         int childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
-        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
+        Human *person = new Human(id,names[namePos],lastnames[LastNamePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt,countries[countriesPos][3]);
         Node *humanNode = new Node(person);
 
         Node *relative = peolpe.getBySurnameAndCountrie(person->surname,person->country);
@@ -49,18 +50,18 @@ void World::generatePeople(int peopleQuan){
 
         //Se fija si existe un arbol de la familia.
         if(relative != nullptr){//SI EXISTE
-            relative->data->family->insert(person);     //AGREGA LA PERSONA AL ARBOL FAMILIAR.
+           relative->data->family->insert(person);     //AGREGA LA PERSONA AL ARBOL FAMILIAR.
 
-           person->family = relative->data->family;   //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
+           person->family = relative->data->family;         //A LA PERSONA LE OTORGA LA FAMILIA COMO ATRIBUTO.
 
-           int t = person->childCount;                     //t es el tope, la cantidad de hijos que necesita
+           /*int t = person->childCount;                     //t es el tope, la cantidad de hijos que necesita
            if(person->family->count < person->childCount){ //pero si hay muy pocas personas en el arbol
                t = person->family->count;                  //entoces establece y como la cantidad de personas ne el arbol
            }
            //AGARRA UNA PERSONA RANDOM DEL ARBOL Y LO SETEA COMO HIJO POR LA CANTIDAD DE HIJOS.
-           /*for(int child = 0; child < t ; child++){
+          for(int child = 0; child < t ; child++){
                Human *randomChild = person->family->getRandom(); //Saca una persona random del arbol
-               if(person->parent == randomChild){                //Si esa persona random es el papa
+               if(randomChild == nullptr || person->parent == randomChild){                //Si esa persona random es el papa
                    continue;                                     //entonces lo ignora y sigue el ciclo
                }                                                 //Si no es el papa
                person[child] = *randomChild;                     //entonces lo setea como hijo

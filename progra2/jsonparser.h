@@ -9,7 +9,7 @@ using namespace std;
 
 struct JsonParser
 {
-    JsonParser(string names[], string lastNames[],string jobs[],string religions[],string countries[][3]);
+    JsonParser(string names[], string lastNames[],string jobs[],string religions[],string countries[][4]);
     json file;
 };
 

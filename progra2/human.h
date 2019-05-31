@@ -12,9 +12,12 @@ struct Human
     string name;
     string surname;
     string country;
+    string continent;
     string religion;
     string job;
     int childCount;
+    int totalSins = 0;
+    int totalGD = 0;
     AVLTree *family = nullptr;
     Human *parent = nullptr;
 
@@ -22,7 +25,7 @@ struct Human
     string goodDeeds[7][2] = {{"Castidad","0"},{"Ayuno","0"},{"Donacion","0"},{"Diligencia","0"},{"Calma","0"},{"Solidaridad","0"},{"Humildad","0"}};
     Human *child[8] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
     char *birth;
-    Human(int id, string name, string surname, string country, string religion, string job, int childrens,char* dt);
+    Human(int id, string name, string surname, string country, string religion, string job, int childrens,char* dt, string continent);
     void showInfo();
     Human();
 };

@@ -6,6 +6,9 @@
 #include "QListWidget"
 #include "demonwindow.h"
 #include "avltree.h"
+#include "QMovie"
+#include "QTimer"
+#include "famsinswindow.h"
 
 using namespace std;
 WorldWindow::WorldWindow(QWidget *parent) :
@@ -22,8 +25,8 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->top10GD, SIGNAL (released()),this, SLOT (top10GD()));
     connect(ui->top5GD, SIGNAL (released()),this, SLOT (top5GD()));
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
-
-
+    connect(ui->ask, SIGNAL (released()),this, SLOT (showFam()));
+    connect(ui->CGD, SIGNAL (released()),this, SLOT (showContinentsInfo()));
 }
 
 WorldWindow::~WorldWindow()
@@ -31,6 +34,7 @@ WorldWindow::~WorldWindow()
     delete ui;
 }
 void WorldWindow::showHumans(){
+
     ui->humansCount->setText("Personas actualmente: "+QString::number(world->peolpe.quantity));
     Node *temp = world->peolpe.first;
     QListWidget *list = ui->list;
@@ -48,7 +52,6 @@ void WorldWindow::showHumans(){
         list->addItem("Religion: "+QString::fromStdString(temp->data->religion));
         list->addItem("Trabajo: "+QString::fromStdString(temp->data->job));
         list->addItem("Familia: "+QString::fromStdString(temp->data->family->name)+" "+QString::number(temp->data->family->count));
-        cout<<temp->data->family->count<<endl;
         string s = "";
         string g = "";
         for(int i = 0;i<7;i++){
@@ -62,7 +65,7 @@ void WorldWindow::showHumans(){
         }
         list->addItem(QString::fromStdString(g));
         list->addItem(QString::fromStdString(s));
-        list->addItem("----------------------");
+        list->addItem("___________________________");
 
         temp = temp->next;
     }
@@ -78,6 +81,7 @@ void WorldWindow::generateSins(){
             //LE ASIGNA A CADA PECADO DE LA PERSONA SU PORCENTAJE RANDOM
             temp->data->sins[t][1] = to_string(stoi(temp->data->sins[t][1])+percetages[t]);
             totalSins = totalSins + percetages[t];
+            temp->data->totalSins = totalSins;
             for(int c = 0; c < temp->data->childCount ; c++){ //RECORRE LA LISTA DE HIJOS
                 //Y A SUS PECADOS LE SUMA EL 50% DEL PAPA.
                 if(temp->data->child[c]!= nullptr){
@@ -93,7 +97,7 @@ void WorldWindow::generateSins(){
                 }
             }
         }
-        temp->data->family->sins = totalSins;
+        temp->data->family->sins = temp->data->family->sins+totalSins;
         for(int country = 0; country < 100; country++){
             if(temp->data->country == this->world->countries[country][0]){
                 int number;
@@ -120,6 +124,7 @@ void WorldWindow::generateGoodDeeds(){
         for(int t = 0; t<7 ; t++){
             temp->data->goodDeeds[t][1] = to_string(stoi(temp->data->goodDeeds[t][1])+percetages[t]);
             totalGD = totalGD + percetages[t];
+            temp->data->totalGD = totalGD;
             for(int c = 0; c < temp->data->childCount ; c++){ //RECORRE LA LISTA DE HIJOS
                 //Y A SUS BUENAS ACCIONES LE SUMA EL 50% DEL PAPA.
                 if(temp->data->child[c]!= nullptr){
@@ -134,6 +139,7 @@ void WorldWindow::generateGoodDeeds(){
                     }
                 }
             }
+            temp->data->family->GD = temp->data->family->GD+totalGD;
         }
 
         for(int country = 0; country < 100; country++){
@@ -184,7 +190,7 @@ void WorldWindow::top5sins()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world->countries[c+5][1] == "0"){
+        if(world->countries[c+5][1] == "0" || c == 94){
             int i = 4;
             while(i>=0){
                 if(world->countries[i][1] == "0"){
@@ -224,7 +230,7 @@ void WorldWindow::top5GD()
     msgBox.setWindowIcon(pixmap);
     msgBox.setWindowTitle("Top 5");
     for(int c = 0 ; c < 100 ; c++ ){
-        if(world->countries[c+5][2] == "0"){
+        if(world->countries[c+5][2] == "0" || c == 94){
             int i = 4;
             while(i>=0){
                 if(world->countries[i][2] == "0"){
@@ -244,6 +250,46 @@ void WorldWindow::showDemon()
 {
     DemonWindow *w = new DemonWindow(nullptr,this->hell->demons);
     w->show();
+}
+
+void WorldWindow::showFam()
+{
+    QString id = ui->id->toPlainText();
+    Node *searched = this->world->peopleTree->search(id.toInt());
+    if(!searched){
+        msgBox.setText("No existe ningun humano con ese id ("+id+")");
+        msgBox.setWindowTitle("Id incorrecto");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.exec();
+        msgBox.setIcon(QMessageBox::NoIcon);
+    }else{
+        FamSinsWindow *w = new FamSinsWindow(nullptr,searched->data->family);
+        w->show();
+    }
+    ui->id->clear();
+}
+
+void WorldWindow::sinsContinent(Node* root)
+{
+    if(root){
+        for(int c = 0 ; c < 6 ; c++){
+            if(this->continentsInfo[c][0] == root->data->continent){
+                this->continentsInfo[c][1] = std::to_string(stoi(this->continentsInfo[c][1])+root->data->totalGD);
+                this->continentsInfo[c][2] = std::to_string(stoi(this->continentsInfo[c][1])+root->data->totalSins);
+                break;
+            }
+
+        }
+
+        sinsContinent(root->left);
+        sinsContinent(root->right);
+    }
+}
+void WorldWindow::showContinentsInfo(){
+    sinsContinent(this->world->peopleTree->root);
+    for(int c = 0 ; c<6 ; c++){
+       cout<<this->continentsInfo[c][0] + this->continentsInfo[c][1]<<endl;
+    }
 }
 void WorldWindow::top10sins()
 {
