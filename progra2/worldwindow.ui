@@ -163,16 +163,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="CS">
-       <property name="text">
-        <string>Continentes más pecadores</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="CGD">
        <property name="text">
-        <string>Continentes menos pecadores</string>
+        <string>Información de continentes</string>
        </property>
       </widget>
      </item>

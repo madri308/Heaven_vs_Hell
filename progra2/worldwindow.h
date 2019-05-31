@@ -18,7 +18,7 @@ public:
     World *world = new World();
     Hell *hell = new Hell();
 
-    std::string continentsInfo[7][3] = {{"America","0","0"},
+    std::string continentsInfo[6][3] = {{"America","0","0"},
                             {"Africa","0","0"},
                             {"Asia","0","0"},
                             {"Europa","0","0"},

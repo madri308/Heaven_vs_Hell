@@ -27,7 +27,7 @@ void World::generatePeople(int peopleQuan){
     for(int human = 0; human < peopleQuan ; human++){
         int id = rand() % 9999999;          //ID RANDOM
         while(this->peolpe.exist(id)){      //Si el id existe
-            id = rand() % 9999999;          //genera otro hasta qu eno exista
+            id = rand() % 9999999;          //genera otro hasta que no exista
         }
         //Saca fecha y hora de nacimiento
         time_t now = time(0);
