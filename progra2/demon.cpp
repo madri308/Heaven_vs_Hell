@@ -1,11 +1,12 @@
 #include "demon.h"
 
-Demon::Demon(QString name, QString sin, QString desc, QString image)
+Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
     this->name = name;
     this->sin = sin;
     this->desc = desc;
     this->image = image;
+    this->n = d;
 }
 
 Demon::Demon(){}
@@ -96,4 +97,9 @@ void Demon::condemn(DoubleList people)
 
         tmp = tmp->next;
     }
+}
+
+void Demon::insertToHeap()
+{
+
 }

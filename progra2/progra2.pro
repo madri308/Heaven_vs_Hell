@@ -40,7 +40,8 @@ SOURCES += \
     heaven.cpp \
     binarysearchtree.cpp \
     demonwindow.cpp \
-    famsinswindow.cpp
+    famsinswindow.cpp \
+    minheap.cpp
 
 HEADERS += \
     avltree.h \
@@ -57,7 +58,8 @@ HEADERS += \
     heaven.h \
     binarysearchtree.h \
     demonwindow.h \
-    famsinswindow.h
+    famsinswindow.h \
+    minheap.h
 
 FORMS += \
     worldwindow.ui \
