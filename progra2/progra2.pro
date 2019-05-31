@@ -33,7 +33,6 @@ SOURCES += \
     jsonparser.cpp \
     human.cpp \
     doublelist.cpp \
-    nodocielo.cpp \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
@@ -43,7 +42,8 @@ SOURCES += \
     binarysearchtree.cpp \
     demonwindow.cpp \
     famsinswindow.cpp \
-    minheap.cpp
+    minheap.cpp \
+    heavennode.cpp
 
 HEADERS += \
     avltree.h \
@@ -53,7 +53,6 @@ HEADERS += \
     json.hpp \
     human.h \
     doublelist.h \
-    nodocielo.h \
     world.h \
     node.h \
     worldwindow.h \
@@ -63,7 +62,8 @@ HEADERS += \
     binarysearchtree.h \
     demonwindow.h \
     famsinswindow.h \
-    minheap.h
+    minheap.h \
+    heavennode.h
 
 FORMS += \
     worldwindow.ui \

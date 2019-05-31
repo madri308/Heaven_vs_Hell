@@ -1,13 +1,13 @@
 #ifndef HEAVENTREE_H
 #define HEAVENTREE_H
-#include "nodocielo.h"
+#include "heavennode.h"
 
 using namespace std;
 
 struct HeavenTree
 {
     HeavenTree();
-    NodoCielo *root;
+    HeavenNode *root;
     string angels[10] = {"Miguel", "Nuriel", "Aniel", "Rafael","Gabriel","Shamsiel","Raguel","Uriel","Azrael","Sasiel"};
 
 };

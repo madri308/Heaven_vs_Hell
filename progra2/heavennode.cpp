@@ -1,4 +1,4 @@
-#include "nodocielo.h"
+#include "heavennode.h"
 
 NodoCielo::NodoCielo(string type)
 {
