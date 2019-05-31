@@ -14,7 +14,8 @@
    <string>7 Demonios</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="2"/>
+   <iconset theme="2">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="next">
@@ -62,7 +63,7 @@
       <x>350</x>
       <y>40</y>
       <width>141</width>
-      <height>291</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -81,6 +82,25 @@
      <bool>true</bool>
     </property>
     <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showHeap">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>310</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Humanos pecadores</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
      <bool>true</bool>
     </property>
    </widget>
