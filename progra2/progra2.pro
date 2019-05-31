@@ -27,6 +27,7 @@ CONFIG += c++11
 
 SOURCES += \
     avltree.cpp \
+    hash.cpp \
         main.cpp \
     jsonparser.cpp \
     human.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
 
 HEADERS += \
     avltree.h \
+    hash.h \
     jsonparser.h \
     json.hpp \
     human.h \
