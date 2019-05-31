@@ -2,14 +2,12 @@
 #include "ui_famsinswindow.h"
 #include "QString"
 
-FamSinsWindow::FamSinsWindow(QWidget *parent,AVLTree *fam) :
+FamSinsWindow::FamSinsWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::FamSinsWindow)
 {
     ui->setupUi(this);
     this->list = ui->list;
-    this->setWindowTitle("Familia "+QString::fromStdString(fam->root->data->family->name));
-    preOrder(fam->root);
 }
 
 FamSinsWindow::~FamSinsWindow()
@@ -19,9 +17,9 @@ FamSinsWindow::~FamSinsWindow()
 
 void FamSinsWindow::preOrder(Node *temp)
 {
+
     if(temp != nullptr)
     {
-        list->addItem("Id: "+QString::number(temp->data->id));
         list->addItem("Nombre: "+QString::fromStdString(temp->data->name+" "+(temp->data->surname)));
         string s = "";
         string g = "";

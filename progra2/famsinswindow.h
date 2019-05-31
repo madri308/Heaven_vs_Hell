@@ -14,7 +14,7 @@ class FamSinsWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    FamSinsWindow(QWidget *parent, AVLTree *fam);
+    FamSinsWindow(QWidget *parent);
     ~FamSinsWindow();
     void preOrder(Node *root);
     QListWidget *list;

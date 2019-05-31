@@ -3,6 +3,7 @@
 #include "demon.h"
 #include "iostream"
 #include "QShortcut"
+#include "famsinswindow.h"
 
 DemonWindow::DemonWindow(QWidget *parent, Demon *list[]) :
     QMainWindow(parent),
@@ -54,7 +55,14 @@ void DemonWindow::prev(){
 
 void DemonWindow::showHeap()
 {
-    std::cout<<"hola"<<endl;
+    FamSinsWindow *w = new FamSinsWindow(nullptr);
+    w->show();
+    w->setWindowTitle(this->demonsList[this->demonC]->name);
+    for(int f = 0 ; f < this->demonsList[demonC]->heap->heapSize ; f++){
+        AVLTree *tempFam = this->demonsList[demonC]->heap->harr[f];
+        w->list->addItem(QString::fromStdString("FAMILIA: "+tempFam->name));
+        w->preOrder(tempFam->root);
+    }
 }
 void DemonWindow::showInfo(){
     QPixmap pixmap = QPixmap(this->demonsList[demonC]->image);
