@@ -2,6 +2,7 @@
 #include <fstream>
 #include <QDateTime>
 #include <QFile>
+#include <QTextStream>
 
 Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
@@ -22,6 +23,7 @@ void Demon::condemn(DoubleList people)
     Node *tmp = copy.first;
     QDateTime dateAndTime = QDateTime::currentDateTime();
     QString dateString = dateAndTime.toString("yyy:MM:dd hh:mm:ss");
+    QString yearMonthDay = dateAndTime.toString("yyy:MM:dd");
     QString filename = dateString + ".txt";
     QFile file (filename);
 
@@ -113,7 +115,6 @@ void Demon::condemn(DoubleList people)
                     tmp3 = tmp;
                 }
             }
-
         }
 
         tmp = tmp->next;
@@ -123,6 +124,24 @@ void Demon::condemn(DoubleList people)
 
     for (int i= 0; i < percentage; i++)
     {
+        string sin = "";
+        string GD = "";
+        string GD2 = "";
+        for(int d = 0 ; d<7 ; d++){
+            if(QString::fromStdString(tmp->data->sins[d][0]) == this->sin){
+                sin = tmp->data->sins[d][1];
+                GD = tmp->data->goodDeeds[d][1];
+                GD2 = tmp->data->goodDeeds[d][0];
+            }
+        }
+        QTextStream out(&file);
+        QString text = dateString + " Humano: " + QString::number(tmp->data->id) + " " + QString::fromStdString(tmp->data->name) +
+                QString::fromStdString(tmp->data->surname) + " " + QString::fromStdString(tmp->data->country) + " Murió el " + yearMonthDay
+                + " condenado por " + QString::fromStdString(sin) + " pecados de " + this->sin + " y "+ QString::fromStdString(GD)
+                + " acciones de " + QString::fromStdString(GD2) + " por el demonio " + this->name;
+        out << text;
+        file.flush();
+        file.close();
 
     }
 }
