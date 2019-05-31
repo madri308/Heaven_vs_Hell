@@ -21,6 +21,7 @@ public:
     int sins = 0;
     int GD = 0;
     int count = 0;
+    void getSins(int d,Node *root);
 };
 
 #endif // AVLTREE_H

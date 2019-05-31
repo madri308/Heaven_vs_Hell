@@ -3,13 +3,10 @@
 #include "iostream"
 #include "avltree.h"
 
-MinHeap::MinHeap(int cap){
+MinHeap::MinHeap(){
     heapSize = 0;
-    capacity = cap;
-    AVLTree *harr[cap];
+    capacity = 10000000;
 }
-
-MinHeap::MinHeap(){}
 void MinHeap::MinHeapify(int i)
 {
     int l = left(i);
@@ -21,7 +18,7 @@ void MinHeap::MinHeapify(int i)
         smallest = r;
     if (smallest != i)
     {
-        swap(&harr[i], &harr[smallest]);
+        swap(harr[i], harr[smallest]);
         MinHeapify(smallest);
     }
 }
@@ -32,10 +29,11 @@ int MinHeap::parent(int i) {
 int MinHeap::right(int i) {
     return (2*i + 2);
 }
-int MinHeap::extractMin()
+int MinHeap::left(int i){
+    return (2*i + 1);
+}
+AVLTree* MinHeap::extractMin()
 {
-    if (heapSize <= 0)
-        return INT_MAX;
     if (heapSize == 1)
     {
         heapSize--;
@@ -43,7 +41,7 @@ int MinHeap::extractMin()
     }
 
     // Store the minimum value, and remove it from heap
-    int root = harr[0];
+    AVLTree* root = harr[0];
     harr[0] = harr[heapSize-1];
     heapSize--;
     MinHeapify(0);
@@ -53,25 +51,19 @@ int MinHeap::extractMin()
 
 void MinHeap::decreaseKey(int i, int new_val)
 {
-    harr[i] = new_val;
+    harr[i]->sins = new_val;
         while (i != 0 && harr[parent(i)] > harr[i])
         {
-           swap(&harr[i], &harr[parent(i)]);
+           swap(harr[i], harr[parent(i)]);
            i = parent(i);
         }
 }
 
-int MinHeap::getMin() {
+AVLTree* MinHeap::getMin() {
     return harr[0];
 }
 
-void MinHeap::deleteKey(int i)
-{
-    decreaseKey(i, INT_MIN);
-    extractMin();
-}
-
-void MinHeap::insertKey(int k)
+void MinHeap::insertKey(AVLTree *tree)
 {
     if (heapSize == capacity){
         std::cout << "\nOverflow: Could not insertKey\n";
@@ -80,18 +72,18 @@ void MinHeap::insertKey(int k)
 
     heapSize++;
     int pos = heapSize - 1;
-    harr[pos] = k;
+    harr[pos] = tree;
 
     // Fix the min heap property if it is violated
     while (pos != 0 && harr[parent(pos)] > harr[pos])
     {
-       swap(&harr[pos], &harr[parent(pos)]);
+       swap(harr[pos], harr[parent(pos)]);
        pos = parent(pos);
     }
 }
-void MinHeap::swap(int *x, int *y)
+void MinHeap::swap(AVLTree *x, AVLTree *y)
 {
-    int temp = *x;
+    AVLTree temp = *x;
     *x = *y;
     *y = temp;
 }

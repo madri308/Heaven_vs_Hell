@@ -99,7 +99,8 @@ void Demon::condemn(DoubleList people)
     }
 }
 
-void Demon::insertToHeap()
+void Demon::insertToHeap(AVLTree *tree)
 {
-
+    tree->getSins(this->n,tree->root);
+    this->heap->insertKey(tree);
 }

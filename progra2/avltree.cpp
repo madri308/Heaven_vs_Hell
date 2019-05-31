@@ -172,3 +172,13 @@ Human* AVLTree::getRandom()
         }
     }
 }
+
+void AVLTree::getSins(int d, Node *root)
+{
+    if(root){
+        sins = sins + stoi(root->data->sins[d][1]);
+
+        getSins(d,root->left);
+        getSins(d,root->right);
+    }
+}
