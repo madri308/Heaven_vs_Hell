@@ -12,7 +12,7 @@ struct Hash
     int hashFunction(int id);
     Hash();
     void insert(Human *person);
-
+    Node *search(int id);
 };
 
 #endif // HASH_H

@@ -1,4 +1,7 @@
 #include "demon.h"
+#include <fstream>
+#include <QDateTime>
+#include <QFile>
 
 Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
@@ -17,6 +20,10 @@ void Demon::condemn(DoubleList people)
     int percentage = quant * 5 / 100;
     DoubleList copy = people; //Copia de la lista de personas para poder modificarla y no perder el orden original, lo uso para ordenarla de mayor a menor
     Node *tmp = copy.first;
+    QDateTime dateAndTime = QDateTime::currentDateTime();
+    QString dateString = dateAndTime.toString("yyy:MM:dd hh:mm:ss");
+    QString filename = dateString + ".txt";
+    QFile file (filename);
 
     while(tmp != nullptr)
     {
@@ -29,7 +36,9 @@ void Demon::condemn(DoubleList people)
 
                 if(difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR EL TMP1 CON EL TMP2
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if (this->name == "Belcebú")
@@ -39,7 +48,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if (this->name == "Satán")
@@ -49,7 +60,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if (this->name == "Abadón")
@@ -59,7 +72,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if (this->name == "Mammón")
@@ -69,7 +84,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if(this->name == "Belfegor")
@@ -79,7 +96,9 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
             else if (this->name == "Asmodeo")
@@ -89,13 +108,22 @@ void Demon::condemn(DoubleList people)
 
                 if (difference2 > difference)
                 {
-                    //AQUI CAMBIO DE LUGAR
+                    Node *tmp3 = tmp2;
+                    tmp2 = tmp;
+                    tmp3 = tmp;
                 }
             }
 
         }
 
         tmp = tmp->next;
+    }
+
+    tmp = copy.first;
+
+    for (int i= 0; i < percentage; i++)
+    {
+
     }
 }
 

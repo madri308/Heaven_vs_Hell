@@ -16,6 +16,8 @@ public:
     void insert(Human *d);
     Node *insert(Node *root, Human *data);
     Human* getRandom();
+    Node *search(int id);
+    Node *search(int id, Node *root);
     Node *root;
     string name;
     int sins = 0;

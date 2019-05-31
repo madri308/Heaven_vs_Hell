@@ -21,4 +21,13 @@ void Hash::insert(Human *person)
     hashTable[index]->insert(person);
 }
 
+Node *Hash::search(int id)
+{
+    int index = hashFunction(id);
+
+    Node * searched = hashTable[index]->search(id);
+
+    return searched;
+}
+
 

@@ -28,10 +28,12 @@ CONFIG += c++11
 SOURCES += \
     avltree.cpp \
     hash.cpp \
+    heaventree.cpp \
         main.cpp \
     jsonparser.cpp \
     human.cpp \
     doublelist.cpp \
+    nodocielo.cpp \
     world.cpp \
     node.cpp \
     worldwindow.cpp \
@@ -46,10 +48,12 @@ SOURCES += \
 HEADERS += \
     avltree.h \
     hash.h \
+    heaventree.h \
     jsonparser.h \
     json.hpp \
     human.h \
     doublelist.h \
+    nodocielo.h \
     world.h \
     node.h \
     worldwindow.h \
