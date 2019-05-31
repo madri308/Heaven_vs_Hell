@@ -27,6 +27,7 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->showDemon, SIGNAL (released()),this, SLOT (showDemon()));
     connect(ui->ask, SIGNAL (released()),this, SLOT (showFam()));
     connect(ui->CGD, SIGNAL (released()),this, SLOT (showContinentsInfo()));
+    connect(ui->condemn, SIGNAL (released()),this, SLOT (condemn()));
 }
 
 WorldWindow::~WorldWindow()
@@ -295,6 +296,11 @@ void WorldWindow::showContinentsInfo(){
         msgBox.setText(msgBox.text()+QString::fromStdString(this->continentsInfo[c][0]+" "+this->continentsInfo[c][1]+" "+this->continentsInfo[c][2])+"\n");
     }
     msgBox.exec();
+}
+
+void WorldWindow::condemn()
+{
+
 }
 void WorldWindow::top10sins()
 {
