@@ -34,12 +34,13 @@ void World::generatePeople(int peopleQuan){
         char *dt = ctime(&now);
         //Saca los datos normales
         int namePos = rand() % 1000;        //NOMBRE RANDOM
+        int LastNamePos = rand() % 1000;    //APELLIDO RANDOM
         int religionPos = rand() % 10;      //RELGION RANDOM
         int countriesPos = rand() % 100;    //PAIS RANDOM
         int jobPos = rand() % 50;           //TRABAJO RANDOM
         int childrens = rand() % 9;      //CANTIDAD DE HIJOS RANDOM
         //CREA EL HUMANO CON SUS DATOS
-        Human *person = new Human(id,names[namePos],lastnames[namePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt);
+        Human *person = new Human(id,names[namePos],lastnames[LastNamePos],countries[countriesPos][0],religions[religionPos],jobs[jobPos],childrens,dt,countries[countriesPos][3]);
         Node *humanNode = new Node(person);
 
         Node *relative = peolpe.getBySurnameAndCountrie(person->surname,person->country);

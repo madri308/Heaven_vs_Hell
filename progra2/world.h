@@ -18,7 +18,7 @@ struct World
     string names[1000];
     string lastnames[1000];
     string religions[10];
-    string countries[100][3];
+    string countries[100][4];
     string jobs[50];
 
     DoubleList peolpe;

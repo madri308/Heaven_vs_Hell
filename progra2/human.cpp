@@ -4,7 +4,7 @@
 
 
 using namespace std;
-Human::Human(int id, string name, string surname, string country, string religion, string job,int childrens,char* dt)
+Human::Human(int id, string name, string surname, string country, string religion, string job,int childrens,char* dt,string continent)
 {
     this->id = id;
     this->name = name;
@@ -14,6 +14,7 @@ Human::Human(int id, string name, string surname, string country, string religio
     this->job = job;
     this->childCount = childrens;
     this->birth = dt;
+    this->continent = continent;
 }
 
 
