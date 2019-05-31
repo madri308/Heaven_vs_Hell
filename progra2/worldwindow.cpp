@@ -278,18 +278,21 @@ void WorldWindow::sinsContinent(Node* root)
                 this->continentsInfo[c][2] = std::to_string(stoi(this->continentsInfo[c][1])+root->data->totalSins);
                 break;
             }
-
         }
-
         sinsContinent(root->left);
         sinsContinent(root->right);
     }
 }
 void WorldWindow::showContinentsInfo(){
-    sinsContinent(this->world->peopleTree->root);
-    for(int c = 0 ; c<6 ; c++){
-       cout<<this->continentsInfo[c][0] + this->continentsInfo[c][1]<<endl;
+    for(int c = 0 ; c<5 ; c++){
+        this->continentsInfo[c][1] = this->continentsInfo[c][2] = "0";
     }
+    sinsContinent(this->world->peopleTree->root);
+    msgBox.setText("");
+    for(int c = 0 ; c<5 ; c++){
+        msgBox.setText(msgBox.text()+QString::fromStdString(this->continentsInfo[c][0]+" "+this->continentsInfo[c][1]+" "+this->continentsInfo[c][2])+"\n");
+    }
+    msgBox.exec();
 }
 void WorldWindow::top10sins()
 {
