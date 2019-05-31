@@ -6,6 +6,7 @@ struct AVLTree
 {
 public:
     AVLTree(string name);
+    AVLTree();
     int max(int a,int b);
     int getHeight(Node *node);
     Node *newNode(Human *human);

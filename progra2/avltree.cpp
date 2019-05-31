@@ -7,6 +7,11 @@ AVLTree::AVLTree(string name)
     root = nullptr;
 }
 
+AVLTree::AVLTree()
+{
+    root = nullptr;
+}
+
 int AVLTree::max(int a, int b)
 {
     return (a>b)? a:b;
