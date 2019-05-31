@@ -22,6 +22,7 @@ public:
 private slots:
     void next();
     void prev();
+    void showHeap();
 private:
     Ui::DemonWindow *ui;
 };

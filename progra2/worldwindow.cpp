@@ -263,8 +263,10 @@ void WorldWindow::showFam()
         msgBox.exec();
         msgBox.setIcon(QMessageBox::NoIcon);
     }else{
-        FamSinsWindow *w = new FamSinsWindow(nullptr,searched->data->family);
+        FamSinsWindow *w = new FamSinsWindow(nullptr);
         w->show();
+        w->setWindowTitle(QString::fromStdString(searched->data->family->name));
+        w->preOrder(searched->data->family->root);
     }
     ui->id->clear();
 }
