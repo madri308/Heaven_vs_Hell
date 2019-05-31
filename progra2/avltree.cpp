@@ -203,3 +203,13 @@ Node *AVLTree::search(int id, Node *root)
         return search(id, root->left);
      }
 }
+
+void AVLTree::getSins(int d, Node *root)
+{
+    if(root){
+        sins = sins + stoi(root->data->sins[d][1]);
+
+        getSins(d,root->left);
+        getSins(d,root->right);
+    }
+}
