@@ -18,6 +18,7 @@ struct MinHeap
     void deleteKey(int i);
     void insertKey(AVLTree *k);
     void swap(AVLTree *x, AVLTree *y);
+    AVLTree* search(Human *human);
     AVLTree *harr[1000000]; // pointer to array of elements in heap
 };
 

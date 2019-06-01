@@ -8,6 +8,7 @@
 #include "/src/SmtpMime"
 #include "world.h"
 
+
 Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
     this->name = name;

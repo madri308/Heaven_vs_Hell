@@ -43,7 +43,7 @@ SOURCES += \
     demonwindow.cpp \
     famsinswindow.cpp \
     minheap.cpp \
-    heavennode.cpp
+    angel.cpp
 
 HEADERS += \
     avltree.h \
@@ -63,7 +63,7 @@ HEADERS += \
     demonwindow.h \
     famsinswindow.h \
     minheap.h \
-    heavennode.h
+    angel.h
 
 FORMS += \
     worldwindow.ui \
