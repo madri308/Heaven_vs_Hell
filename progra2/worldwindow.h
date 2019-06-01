@@ -48,6 +48,7 @@ private slots:
     void condemn();
     void save();
 private:
+
 };
 
 #endif // WORLDWINDOW_H

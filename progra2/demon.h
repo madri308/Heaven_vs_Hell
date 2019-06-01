@@ -5,6 +5,7 @@
 #include "doublelist.h"
 #include "minheap.h"
 #include "limits.h"
+#include <QFile>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ struct Demon
     Demon();
     void condemn(DoubleList people);
     void insertToHeap(AVLTree *tree);
+    void writeToFile();
 
     QString name;
     QString sin;
@@ -21,6 +23,7 @@ struct Demon
     QString desc;
     int n = 0;      //Se utiliza para saber la posicion de su pecado.
     MinHeap *heap = new MinHeap();
+    int count = 0;
 
 };
 

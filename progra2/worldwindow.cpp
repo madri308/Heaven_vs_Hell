@@ -301,7 +301,7 @@ void WorldWindow::showContinentsInfo(){
 
 void WorldWindow::condemn()
 {
-
+    this->hell->demons[0]->condemn(this->world->peolpe);
 }
 
 void WorldWindow::save()
