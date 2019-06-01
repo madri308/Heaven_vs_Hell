@@ -5,6 +5,7 @@
 #include "world.h"
 #include "QMessageBox"
 #include "QLabel"
+#include "heaven.h"
 
 namespace Ui {
 class WorldWindow;
@@ -17,6 +18,7 @@ class WorldWindow : public QMainWindow
 public:
     World *world = new World();
     Hell *hell = new Hell();
+    Heaven *heaven = new Heaven();
 
     std::string continentsInfo[6][3] = {{"America","0","0"},
                             {"Africa","0","0"},
@@ -43,6 +45,8 @@ private slots:
     void showFam();
     void sinsContinent(Node* root);
     void showContinentsInfo();
+    void condemn();
+    void save();
 private:
 };
 

@@ -28,6 +28,7 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->ask, SIGNAL (released()),this, SLOT (showFam()));
     connect(ui->CGD, SIGNAL (released()),this, SLOT (showContinentsInfo()));
     connect(ui->condemn, SIGNAL (released()),this, SLOT (condemn()));
+    connect(ui->save, SIGNAL (released()),this, SLOT (save()));
 }
 
 WorldWindow::~WorldWindow()
@@ -301,6 +302,12 @@ void WorldWindow::showContinentsInfo(){
 void WorldWindow::condemn()
 {
 
+}
+
+void WorldWindow::save()
+{
+    this->heaven->angels->generateAngels();
+    this->heaven->angels->showAngels();
 }
 void WorldWindow::top10sins()
 {
