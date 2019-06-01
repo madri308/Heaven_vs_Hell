@@ -2,7 +2,7 @@
 #define HEAVENTREE_H
 #include "angel.h"
 #include "famsinswindow.h"
-
+struct Heaven;
 using namespace std;
 
 struct HeavenTree
@@ -17,6 +17,7 @@ struct HeavenTree
     void showAngels(Angel* root,FamSinsWindow *w,int c);
     int quant = 13;
     int ver = 0;
+    Heaven *heaven;
 };
 
 #endif // HEAVENTREE_H

@@ -3,4 +3,5 @@
 
 Heaven::Heaven()
 {
+    this->angels->heaven = this;
 }

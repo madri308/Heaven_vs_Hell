@@ -1,4 +1,6 @@
 #include "angel.h"
+#include "heaven.h"
+#include "worldwindow.h"
 
 Angel::Angel(string name, int ver, int gen,string type)
 {
@@ -17,14 +19,15 @@ Node* getDiference(Node *root){
     }
     return nullptr;
 }
-void Angel::save(Hell hell)
+void Angel::save(WorldWindow *world)
 {
-    for(Demon *demon:hell.demons){
+    for(Demon *demon:world->hell->demons){
         for(int fam = 0 ; fam < demon->heap->heapSize ; fam++){
             AVLTree *family = demon->heap->harr[fam];
             Node *toSave = getDiference(family->root);
             if(toSave){
-                demon->heap->deleteKey(toSave->data->id);
+                family->removeElement(toSave->data->id);
+                world->heaven->heavenTable->insert(toSave->data);
             }
         }
     }

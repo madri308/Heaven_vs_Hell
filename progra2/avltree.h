@@ -24,6 +24,9 @@ public:
     int GD = 0;
     int count = 0;
     void getSins(int d,Node *root);
+    Node *removeElement(int id);
+    Node *removeElement(int id, Node* tree);
+    Node *greater(Node* tree);
 };
 
 #endif // AVLTREE_H

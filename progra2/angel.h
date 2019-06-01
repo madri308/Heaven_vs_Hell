@@ -2,12 +2,11 @@
 #define ANGEL_H
 #include "iostream"
 #include "human.h"
-#include "hell.h"
-
 using namespace std;
+
+struct WorldWindow;
 struct Angel
 {
-public:
     Angel(string name, int ver, int gen, string type);
     string name;    //es uno de los nomres de la lista de ángeles
     int ver;        //es el número de ese angel en esa generación
@@ -19,7 +18,7 @@ public:
     Angel *middleChild = nullptr;
     Angel *rightChild = nullptr;
 
-    void save(Hell hell);
+    void save(WorldWindow *world);
 };
 
 #endif // ANGEL_H

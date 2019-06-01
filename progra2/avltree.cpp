@@ -213,3 +213,58 @@ void AVLTree::getSins(int d, Node *root)
         getSins(d,root->right);
     }
 }
+
+Node *AVLTree::removeElement(int id)
+{
+    root = removeElement(id, root);
+    return root;
+}
+
+Node *AVLTree::removeElement(int id, Node *tree)
+{
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+    else if (id < tree->data->id)
+    {
+        tree->left = removeElement(id, tree->left);
+    }
+    else if (id > tree->data->id)
+    {
+        tree->right = removeElement(id, tree->right);
+    }
+    else if (tree->right == nullptr && tree->left == nullptr)
+    {
+        tree = nullptr;
+    }
+    else if (tree->left == nullptr)
+    {
+        tree = tree->right;
+    }
+    else if (tree->right == nullptr)
+    {
+        tree = tree->left;
+    }
+    else {
+        Node *max = greater(tree->left); //mayor de los menores
+        tree->left = removeElement(max->data->id, tree->left);
+        tree->data = max->data;
+    }
+    return tree;
+}
+
+Node *AVLTree::greater(Node *tree)
+{
+    if (tree == nullptr)
+    {
+        return nullptr;
+    }
+    else if (tree->right == nullptr)
+    {
+        return tree;
+    }
+    else {
+        return greater(tree->right);
+    }
+}

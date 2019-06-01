@@ -3,6 +3,7 @@
 #include <ctime>
 #include <chrono>
 #include "famsinswindow.h"
+#include "heaven.h"
 
 HeavenTree::HeavenTree()
 {

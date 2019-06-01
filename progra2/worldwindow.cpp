@@ -296,7 +296,7 @@ void WorldWindow::showContinentsInfo(){
     sinsContinent(this->world->peopleTree->root);
     msgBox.setText("");
     for(int c = 0 ; c<5 ; c++){
-        msgBox.setText(msgBox.text()+QString::fromStdString(this->continentsInfo[c][0]+" "+this->continentsInfo[c][1]+" "+this->continentsInfo[c][2])+"\n");
+        msgBox.setText(msgBox.text()+QString::fromStdString(this->continentsInfo[c][0]+"\n  Buenas acciones: "+this->continentsInfo[c][1]+"\n  Pecados: "+this->continentsInfo[c][2])+"\n\n");
     }
     msgBox.exec();
 }

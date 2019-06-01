@@ -52,11 +52,11 @@ AVLTree* MinHeap::extractMin()
 void MinHeap::decreaseKey(int i, int new_val)
 {
     harr[i]->sins = new_val;
-        while (i != 0 && harr[parent(i)] > harr[i])
-        {
-           swap(harr[i], harr[parent(i)]);
-           i = parent(i);
-        }
+    while (i != 0 && harr[parent(i)]->sins > harr[i]->sins)
+    {
+       swap(harr[i], harr[parent(i)]);
+       i = parent(i);
+    }
 }
 
 AVLTree* MinHeap::getMin() {
@@ -71,20 +71,22 @@ void MinHeap::deleteKey(int i)
 
 void MinHeap::insertKey(AVLTree *tree)
 {
-    if (heapSize == capacity){
-        std::cout << "\nOverflow: Could not insertKey\n";
+    if (heapSize == capacity)
+    {
+        cout << "\nOverflow: Could not insertKey\n";
         return;
     }
 
+    // First insert the new key at the end
     heapSize++;
-    int pos = heapSize - 1;
-    harr[pos] = tree;
+    int i = heapSize - 1;
+    harr[i] = tree;
 
     // Fix the min heap property if it is violated
-    while (pos != 0 && harr[parent(pos)] > harr[pos])
+    while (i != 0 && harr[parent(i)]->sins > harr[i]->sins)
     {
-       swap(harr[pos], harr[parent(pos)]);
-       pos = parent(pos);
+       swap(harr[i], harr[parent(i)]);
+       i = parent(i);
     }
 }
 void MinHeap::swap(AVLTree *x, AVLTree *y)
@@ -97,7 +99,7 @@ void MinHeap::swap(AVLTree *x, AVLTree *y)
 AVLTree *MinHeap::search(Human *human)
 {
     for(AVLTree *fam:this->harr){
-        if(human.family->name == fam->name){
+        if(human->family->name == fam->name){
             return fam;
         }
     }
