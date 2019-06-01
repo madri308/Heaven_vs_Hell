@@ -1,6 +1,6 @@
 #include "heavennode.h"
 
-NodoCielo::NodoCielo(string type)
+HeavenNode::HeavenNode(string type)
 {
     this->type = type;
     leftChild = nullptr;

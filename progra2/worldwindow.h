@@ -43,7 +43,7 @@ private slots:
     void showFam();
     void sinsContinent(Node* root);
     void showContinentsInfo();
-private:
+    void condemn();
 };
 
 #endif // WORLDWINDOW_H
