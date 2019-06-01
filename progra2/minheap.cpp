@@ -63,6 +63,12 @@ AVLTree* MinHeap::getMin() {
     return harr[0];
 }
 
+void MinHeap::deleteKey(int i)
+{
+    decreaseKey(i, INT_MIN);
+    extractMin();
+}
+
 void MinHeap::insertKey(AVLTree *tree)
 {
     if (heapSize == capacity){
@@ -86,4 +92,14 @@ void MinHeap::swap(AVLTree *x, AVLTree *y)
     AVLTree temp = *x;
     *x = *y;
     *y = temp;
+}
+
+AVLTree *MinHeap::search(Human *human)
+{
+    for(AVLTree *fam:this->harr){
+        if(human.family->name == fam->name){
+            return fam;
+        }
+    }
+    return nullptr;
 }

@@ -2,6 +2,7 @@
 #define ANGEL_H
 #include "iostream"
 #include "human.h"
+#include "hell.h"
 
 using namespace std;
 struct Angel
@@ -17,6 +18,8 @@ public:
     Angel *leftChild = nullptr;
     Angel *middleChild = nullptr;
     Angel *rightChild = nullptr;
+
+    void save(Hell hell);
 };
 
 #endif // ANGEL_H

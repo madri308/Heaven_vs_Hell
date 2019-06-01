@@ -29,6 +29,8 @@ WorldWindow::WorldWindow(QWidget *parent) :
     connect(ui->CGD, SIGNAL (released()),this, SLOT (showContinentsInfo()));
     connect(ui->condemn, SIGNAL (released()),this, SLOT (condemn()));
     connect(ui->save, SIGNAL (released()),this, SLOT (save()));
+
+    this->heaven->world = this;
 }
 
 WorldWindow::~WorldWindow()

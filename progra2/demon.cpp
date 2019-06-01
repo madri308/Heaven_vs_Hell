@@ -5,7 +5,7 @@
 #include <QTextStream>
 #include <vector>
 #include <iostream>
-#include "\src\SmtpMime"
+#include "src/SmtpMime"
 
 Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
