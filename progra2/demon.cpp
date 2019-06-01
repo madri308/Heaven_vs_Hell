@@ -5,7 +5,8 @@
 #include <QTextStream>
 #include <vector>
 #include <iostream>
-#include "\src\SmtpMime"
+#include "/src/SmtpMime"
+#include "world.h"
 
 Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 {
@@ -18,13 +19,12 @@ Demon::Demon(QString name, QString sin, QString desc, QString image,int d)
 
 Demon::Demon(){}
 
-
-void Demon::condemn(DoubleList people)
+void Demon::condemn(World world)
 {
-    int quant = people.quantity;
+    int quant = world.peolpe.quantity;
     int percentage = quant * 5 / 100;
     vector<Node*> copy(quant);
-    Node *tmp = people.first;
+    Node *tmp = world.peolpe.first;
 
     QDateTime dateAndTime = QDateTime::currentDateTime();
     QString dateString = dateAndTime.toString("yyyy:MM:dd");
@@ -207,10 +207,33 @@ void Demon::condemn(DoubleList people)
                 cout << "no existe" << endl;
             }
         }
-
+        world.peolpe.remove(copy[j]->data->id);
+        world.peopleTree->removeElement(copy[j]->data->id);
+        this->heap->insertKey()
     }
     this->count++;
 
+    /*SmtpClient smtp("smtp.gmail.com",465, SmtpClient::SslConnection);
+
+    smtp.setUser("elsebuchas@gmail.com");
+    smtp.setPassword("kungfutai");
+
+    MimeMessage message;
+
+    message.setSender(new EmailAddress("elsebuchas@gmail.com", "Sebas"));
+    message.addRecipient(new EmailAddress("ememadrigal.em@gmail.com", "Esteban"));
+    message.setSubject("Sobo");
+
+    MimeText text;
+
+    text.setText("Chupeme la verga malparido");
+
+    message.addPart(&text);
+
+    smtp.connectToHost();
+    smtp.login();
+    smtp.sendMail(message);
+    smtp.quit();*/
 
 }
 
